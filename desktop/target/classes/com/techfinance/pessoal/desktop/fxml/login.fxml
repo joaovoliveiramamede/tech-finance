@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.techfinance.pessoal.desktop.controller.LoginController"
+            styleClass="auth-root">
+
+    <center>
+        <VBox alignment="CENTER" spacing="24">
+
+            <VBox styleClass="auth-card" spacing="18" maxWidth="420">
+
+                <padding>
+                    <Insets top="32" right="32" bottom="32" left="32"/>
+                </padding>
+
+                <VBox spacing="6">
+                    <Label text="Entrar" styleClass="auth-title"/>
+                    <Label text="Acesse sua conta financeira pessoal." styleClass="auth-subtitle"/>
+                </VBox>
+
+                <VBox spacing="12">
+                    <Label text="E-mail" styleClass="field-label"/>
+                    <TextField fx:id="emailField" promptText="seuemail@email.com"/>
+                </VBox>
+
+                <VBox spacing="12">
+                    <Label text="Senha" styleClass="field-label"/>
+                    <PasswordField fx:id="passwordField" promptText="Digite sua senha"/>
+                </VBox>
+
+                <Label fx:id="errorLabel" styleClass="error-label" visible="false" managed="false"/>
+
+                <Button text="Entrar" onAction="#handleLogin" styleClass="primary-button" maxWidth="Infinity"/>
+
+                <Button text="Criar nova conta" onAction="#goToRegister" styleClass="link-button" maxWidth="Infinity"/>
+
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

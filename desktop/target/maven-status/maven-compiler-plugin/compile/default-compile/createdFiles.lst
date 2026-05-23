@@ -1,0 +1,6 @@
+com\techfinance\pessoal\desktop\controller\LoginController.class
+com\techfinance\pessoal\desktop\navigation\AppNavigator.class
+com\techfinance\pessoal\desktop\controller\RegisterController.class
+com\techfinance\pessoal\desktop\DesktopApplication.class
+com\techfinance\pessoal\desktop\controller\MainController.class
+com\techfinance\pessoal\desktop\navigation\SceneNavigator.class
