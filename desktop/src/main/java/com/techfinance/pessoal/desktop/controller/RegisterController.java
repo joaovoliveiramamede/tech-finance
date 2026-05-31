@@ -1,71 +1,77 @@
 package com.techfinance.pessoal.desktop.controller;
 
+import com.google.inject.Inject;
+import com.techfinance.pessoal.desktop.dto.request.RegisterRequest;
 import com.techfinance.pessoal.desktop.navigation.AppNavigator;
+import com.techfinance.pessoal.desktop.service.AuthService;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class RegisterController {
+
+    private final AuthService authService;
+
+    @Inject
+    public RegisterController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @FXML
     private TextField nameField;
 
     @FXML
-    private TextField emailField;
+    private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
-
-    @FXML
-    private PasswordField confirmPasswordField;
 
     @FXML
     private Label errorLabel;
 
     @FXML
     private void handleRegister() {
+
         String name = nameField.getText();
-        String email = emailField.getText();
+        String username = usernameField.getText();
         String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
 
         if (isBlank(name)) {
             showError("Informe seu nome.");
             return;
         }
 
-        if (name.trim().length() < 3) {
-            showError("O nome deve ter pelo menos 3 caracteres.");
+        if (name.length() < 3) {
+            showError("Nome inválido.");
             return;
         }
 
-        if (isBlank(email)) {
-            showError("Informe seu e-mail.");
-            return;
-        }
-
-        if (!email.contains("@")) {
-            showError("Informe um e-mail válido.");
-            return;
-        }
-
-        if (isBlank(password)) {
-            showError("Informe uma senha.");
+        if (isBlank(username)) {
+            showError("Informe username.");
             return;
         }
 
         if (password.length() < 6) {
-            showError("A senha deve ter pelo menos 6 caracteres.");
+            showError("Senha inválida.");
             return;
         }
 
-        if (!password.equals(confirmPassword)) {
-            showError("As senhas não conferem.");
-            return;
-        }
+        try {
 
-        AppNavigator.navigateToMain();
+            authService.register(
+                    new RegisterRequest(
+                            name,
+                            username,
+                            password,
+                            "USER"
+                    )
+            );
+
+            AppNavigator.navigateToLogin();
+
+        } catch (Exception e) {
+            showError(e.getMessage());
+        }
     }
 
     @FXML
@@ -73,8 +79,8 @@ public class RegisterController {
         AppNavigator.navigateToLogin();
     }
 
-    private void showError(String message) {
-        errorLabel.setText(message);
+    private void showError(String msg) {
+        errorLabel.setText(msg);
         errorLabel.setVisible(true);
         errorLabel.setManaged(true);
     }

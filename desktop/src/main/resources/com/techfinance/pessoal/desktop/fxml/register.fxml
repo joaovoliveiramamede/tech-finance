@@ -6,47 +6,47 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.techfinance.pessoal.desktop.controller.RegisterController"
-            styleClass="auth-root">
+            styleClass="register-root">
 
     <center>
-        <VBox alignment="CENTER" spacing="24">
+        <VBox alignment="CENTER">
 
-            <VBox styleClass="auth-card" spacing="16" maxWidth="460">
+            <VBox styleClass="register-card" spacing="16">
 
                 <padding>
                     <Insets top="32" right="32" bottom="32" left="32"/>
                 </padding>
 
-                <VBox spacing="6">
-                    <Label text="Criar conta" styleClass="auth-title"/>
-                    <Label text="Comece a organizar suas finanças pessoais." styleClass="auth-subtitle"/>
-                </VBox>
+                <Label text="Criar conta"
+                       styleClass="register-title"/>
 
-                <VBox spacing="10">
-                    <Label text="Nome" styleClass="field-label"/>
-                    <TextField fx:id="nameField" promptText="Seu nome"/>
-                </VBox>
+                <Label text="Comece a organizar suas finanças"
+                       styleClass="register-subtitle"/>
 
-                <VBox spacing="10">
-                    <Label text="E-mail" styleClass="field-label"/>
-                    <TextField fx:id="emailField" promptText="seuemail@email.com"/>
-                </VBox>
+                <TextField fx:id="nameField"
+                           promptText="Nome"
+                           styleClass="register-field"/>
 
-                <VBox spacing="10">
-                    <Label text="Senha" styleClass="field-label"/>
-                    <PasswordField fx:id="passwordField" promptText="Mínimo 6 caracteres"/>
-                </VBox>
+                <TextField fx:id="usernameField"
+                           promptText="Username"
+                           styleClass="register-field"/>
 
-                <VBox spacing="10">
-                    <Label text="Confirmar senha" styleClass="field-label"/>
-                    <PasswordField fx:id="confirmPasswordField" promptText="Repita sua senha"/>
-                </VBox>
+                <PasswordField fx:id="passwordField"
+                               promptText="Senha"
+                               styleClass="register-field"/>
 
-                <Label fx:id="errorLabel" styleClass="error-label" visible="false" managed="false"/>
+                <Label fx:id="errorLabel"
+                       visible="false"
+                       managed="false"
+                       styleClass="error-label"/>
 
-                <Button text="Cadastrar" onAction="#handleRegister" styleClass="primary-button" maxWidth="Infinity"/>
+                <Button text="Cadastrar"
+                        onAction="#handleRegister"
+                        styleClass="register-button"/>
 
-                <Button text="Já tenho uma conta" onAction="#goToLogin" styleClass="link-button" maxWidth="Infinity"/>
+                <Button text="Já tenho conta"
+                        onAction="#goToLogin"
+                        styleClass="register-link"/>
 
             </VBox>
 

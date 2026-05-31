@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.techfinance.pessoal.api.infra.exception.BussinessErrorException;
 import com.techfinance.pessoal.api.infra.security.exception.NotFoundErrorException;
 import com.techfinance.pessoal.api.user.adapter.in.dto.request.UserRequest;
 import com.techfinance.pessoal.api.user.adapter.in.dto.response.UserResponse;
-import com.techfinance.pessoal.api.user.application.exception.BussinessErrorException;
 import com.techfinance.pessoal.api.user.application.mapper.UserMapper;
 import com.techfinance.pessoal.api.user.domain.model.User;
 import com.techfinance.pessoal.api.user.domain.port.in.UserCommand;

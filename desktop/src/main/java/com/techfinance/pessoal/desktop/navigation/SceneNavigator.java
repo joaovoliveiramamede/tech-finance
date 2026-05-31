@@ -17,20 +17,15 @@ public class SceneNavigator {
 
     public void navigateTo(String fxml) {
         try {
-            URL fxmlUrl = getClass().getResource(
-                    "/com/techfinance/pessoal/desktop/fxml/" + fxml
+            URL url = getClass().getResource(
+                "/com/techfinance/pessoal/desktop/fxml/" + fxml
             );
 
-            if (fxmlUrl == null) {
-                throw new IllegalStateException("FXML não encontrado: " + fxml);
-            }
-
-            FXMLLoader loader = new FXMLLoader(fxmlUrl);
-
+            FXMLLoader loader = new FXMLLoader(url);
+            
             Node view = loader.load();
 
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(view);
+            contentArea.getChildren().setAll(view);
 
         } catch (IOException exception) {
             throw new RuntimeException("Erro ao carregar página: " + fxml, exception);

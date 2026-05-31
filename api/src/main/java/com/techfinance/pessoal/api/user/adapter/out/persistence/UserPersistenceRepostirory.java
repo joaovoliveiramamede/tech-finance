@@ -1,7 +1,7 @@
 package com.techfinance.pessoal.api.user.adapter.out.persistence;
 
+import com.techfinance.pessoal.api.infra.exception.UnexpectedErrorException;
 import com.techfinance.pessoal.api.infra.spring.persistence.UserPersistenceSpring;
-import com.techfinance.pessoal.api.user.application.exception.UnexpectedErrorException;
 import com.techfinance.pessoal.api.user.domain.model.User;
 import com.techfinance.pessoal.api.user.domain.port.out.UserRepository;
 

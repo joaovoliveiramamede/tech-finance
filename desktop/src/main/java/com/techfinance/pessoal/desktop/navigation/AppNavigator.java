@@ -1,7 +1,11 @@
 package com.techfinance.pessoal.desktop.navigation;
 
+import com.techfinance.pessoal.desktop.DesktopApplication;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,59 +15,59 @@ public final class AppNavigator {
 
     private static Stage primaryStage;
 
-    private AppNavigator() {
-    }
+    private AppNavigator() {}
 
     public static void init(Stage stage) {
-        primaryStage = stage;
-        primaryStage.setTitle("TechFinance Pessoal");
-        primaryStage.setMinWidth(1000);
-        primaryStage.setMinHeight(650);
-    }
 
-    public static void navigateToLogin() {
-        setScene("login.fxml", 1000, 650);
+        primaryStage = stage;
+        primaryStage.setTitle("TechFinance");
+
+        primaryStage.setMaximized(true);
+
+        primaryStage.centerOnScreen();
     }
 
     public static void navigateToRegister() {
-        setScene("register.fxml", 1000, 650);
+        load("register.fxml", "register.css");
     }
 
-    public static void navigateToMain() {
-        setScene("main.fxml", 1200, 720);
+    public static void navigateToLogin() {
+        load("login.fxml", "login.css");
     }
 
-    private static void setScene(String fxml, int width, int height) {
+    private static void load(String fxml, String css) {
+
         try {
-            URL fxmlUrl = AppNavigator.class.getResource(
+
+            URL url = AppNavigator.class.getResource(
                     "/com/techfinance/pessoal/desktop/fxml/" + fxml
             );
 
-            if (fxmlUrl == null) {
-                throw new IllegalStateException("FXML não encontrado: " + fxml);
-            }
+            FXMLLoader loader = new FXMLLoader(url);
 
-            FXMLLoader loader = new FXMLLoader(fxmlUrl);
-            Scene scene = new Scene(loader.load(), width, height);
+            loader.setControllerFactory(
+                    DesktopApplication.getInjector()::getInstance
+            );
 
-            addCss(scene, "auth.css");
+            Parent root = loader.load();
+
+            Scene scene = new Scene(
+                    root,
+                    Screen.getPrimary().getBounds().getWidth(),
+                    Screen.getPrimary().getBounds().getHeight()
+            );
+
+            URL cssUrl = AppNavigator.class.getResource(
+                    "/com/techfinance/pessoal/desktop/css/" + css
+            );
+
+            scene.getStylesheets().add(cssUrl.toExternalForm());
 
             primaryStage.setScene(scene);
-            primaryStage.centerOnScreen();
             primaryStage.show();
 
-        } catch (IOException exception) {
-            throw new RuntimeException("Erro ao carregar tela: " + fxml, exception);
-        }
-    }
-
-    private static void addCss(Scene scene, String cssFile) {
-        URL cssUrl = AppNavigator.class.getResource(
-                "/com/techfinance/pessoal/desktop/css/" + cssFile
-        );
-
-        if (cssUrl != null) {
-            scene.getStylesheets().add(cssUrl.toExternalForm());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

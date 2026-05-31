@@ -4,7 +4,6 @@ com\techfinance\pessoal\api\user\adapter\in\controller\UserRestController.class
 com\techfinance\pessoal\api\user\domain\enums\Role.class
 com\techfinance\pessoal\api\user\domain\model\User$UserBuilder.class
 com\techfinance\pessoal\api\ApiApplication.class
-com\techfinance\pessoal\api\user\application\exception\UnexpectedErrorException.class
 com\techfinance\pessoal\api\infra\security\exception\NotFoundErrorException.class
 com\techfinance\pessoal\api\infra\security\config\SecurityConfig.class
 com\techfinance\pessoal\api\user\application\mapper\UserMapper.class
@@ -14,7 +13,6 @@ com\techfinance\pessoal\api\auth\adapter\in\dto\request\RegisterRequest.class
 com\techfinance\pessoal\api\user\adapter\in\dto\response\UserResponse.class
 com\techfinance\pessoal\api\user\adapter\in\dto\request\UserRequest.class
 com\techfinance\pessoal\api\auth\adapter\in\controller\AuthRestController.class
-com\techfinance\pessoal\api\user\application\exception\BussinessErrorException.class
 com\techfinance\pessoal\api\user\domain\port\in\UserQuery.class
 com\techfinance\pessoal\api\user\domain\model\User.class
 com\techfinance\pessoal\api\auth\domain\port\in\AuthCommand.class

@@ -5,10 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techfinance.pessoal.api.auth.adapter.in.dto.request.LoginRequest;
+import com.techfinance.pessoal.api.auth.adapter.in.dto.response.AuthResponse;
 import com.techfinance.pessoal.api.auth.application.service.AuthService;
 import com.techfinance.pessoal.api.user.adapter.in.dto.request.UserRequest;
 
@@ -30,7 +30,7 @@ public class AuthRestController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(
+    public ResponseEntity<AuthResponse> login(
         @RequestBody LoginRequest request
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(
