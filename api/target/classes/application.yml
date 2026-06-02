@@ -13,6 +13,11 @@ spring:
             ddl-auto: update
         show-sql: true
 
+logging:
+  level:
+    root: info
+    '[com.techfinance.pessoal]': debug
+
 jwt:
     secret: "minha-chave-super-secreta-com-32-caracteres"
     expiration: 3600000

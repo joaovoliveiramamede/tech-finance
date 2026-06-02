@@ -17,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.techfinance.pessoal.api.infra.security.filter.JwtAuthenticationFilter;
+import com.techfinance.pessoal.api.infra.shared.ApiRoute;
 import com.techfinance.pessoal.api.user.application.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth ->
                 auth
                     .requestMatchers("/users/create").permitAll()
+                    .requestMatchers(ApiRoute.API_V1 + ApiRoute.CATEGORY + "/**").permitAll()
                     .requestMatchers("/auth/**").permitAll()
                     .anyRequest().authenticated()
             )
