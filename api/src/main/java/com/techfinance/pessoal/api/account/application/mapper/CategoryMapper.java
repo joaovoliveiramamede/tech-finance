@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.techfinance.pessoal.api.account.adapter.in.dto.request.CategoryRequest;
 import com.techfinance.pessoal.api.account.adapter.in.dto.response.CategoryResponse;
 import com.techfinance.pessoal.api.account.domain.model.Category;
-import com.techfinance.pessoal.api.infra.shared.MapperConverter;
+import com.techfinance.pessoal.api.infra.shared.converter.MapperConverter;
 
 @Component
 public class CategoryMapper 

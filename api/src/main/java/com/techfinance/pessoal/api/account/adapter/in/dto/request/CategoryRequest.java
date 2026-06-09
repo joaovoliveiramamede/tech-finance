@@ -9,10 +9,10 @@ import jakarta.validation.constraints.NotBlank;
 public record CategoryRequest(
 
     @JsonProperty(value = "nome")
-    @NotBlank(message = "propriedade nome não pode ser nula")
+    @NotBlank(message = "propriedade nome não pode ser nula ou vazia")
     String name,
 
     @JsonProperty(value = "descricao")
-    @NotBlank(message = "propriedade descricao não pode ser nula")
+    @NotBlank(message = "propriedade descricao não pode ser nula ou vazia")
     String description
 ) {}

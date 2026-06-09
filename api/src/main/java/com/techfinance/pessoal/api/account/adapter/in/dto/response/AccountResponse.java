@@ -4,9 +4,31 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.techfinance.pessoal.api.account.domain.enums.AccountType;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(value = Include.NON_NULL)
 public record AccountResponse(
+
+    @JsonProperty(value = "id")
     UUID id,
+
+    @JsonProperty(value = "nome")
+    String name,
+
+    @JsonProperty(value = "saldo")
     BigDecimal balance,
+
+    @JsonProperty(value = "tipo")
+    AccountType type,
+
+    @JsonProperty(value = "data_criacao")
     Instant createdAt,
+
+    @JsonProperty(value = "data_atualizacao")
     Instant updatedAt
 ) {}

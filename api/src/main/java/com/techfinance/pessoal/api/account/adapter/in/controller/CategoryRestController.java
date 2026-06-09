@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techfinance.pessoal.api.account.adapter.in.dto.request.CategoryRequest;
 import com.techfinance.pessoal.api.account.adapter.in.dto.response.CategoryResponse;
 import com.techfinance.pessoal.api.account.application.service.CategoryService;
-import com.techfinance.pessoal.api.infra.shared.ApiRoute;
+import com.techfinance.pessoal.api.infra.shared.routes.ApiRoute;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

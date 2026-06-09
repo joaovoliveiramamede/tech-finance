@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.techfinance.pessoal.api.account.domain.enums.TransactionType;
 
+import com.techfinance.pessoal.api.infra.shared.entitybase.EntityBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,12 +29,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Transaction {
- 
-    @Id
-    private UUID id;
+public class Transaction extends EntityBase {
 
-    @Column(name = "quantidade", nullable = false)
+    @Column(name = "valor", nullable = false)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
@@ -46,12 +44,6 @@ public class Transaction {
     @Column(name = "data_transacao", nullable = false, updatable = false)
     private Instant occurredAt;
 
-    @Column(name = "data_criacao", nullable = false, updatable = false)
-    private Instant createdAt;
-
-    @Column(name = "data_atualizacao", nullable = false)
-    private Instant updatedAt;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_id")
     private Account account;
@@ -59,27 +51,5 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
-    @PrePersist
-    public void prePersist() {
-
-        if (id == null) {
-            this.id = UUID.randomUUID();
-        }
-
-        Instant now = Instant.now();
-
-        if (occurredAt == null) {
-            occurredAt = now;
-        }
-
-        this.createdAt = now;
-        this.updatedAt = now;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = Instant.now();
-    }
 
 }

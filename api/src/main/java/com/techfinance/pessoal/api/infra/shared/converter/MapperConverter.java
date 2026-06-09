@@ -1,4 +1,4 @@
-package com.techfinance.pessoal.api.infra.shared;
+package com.techfinance.pessoal.api.infra.shared.converter;
 
 import lombok.extern.log4j.Log4j2;
 

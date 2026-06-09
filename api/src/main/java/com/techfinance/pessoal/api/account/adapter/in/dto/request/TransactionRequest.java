@@ -9,9 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.techfinance.pessoal.api.account.domain.enums.TransactionType;
 
+import jakarta.validation.constraints.NotBlank;
+
 public record TransactionRequest(
     
     @JsonProperty(value = "id_conta")
+    @NotBlank(message = "")
     UUID accountId,
 
     @JsonProperty(value = "id_categiria")
