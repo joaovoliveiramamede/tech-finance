@@ -36,12 +36,12 @@ public record AccountResponse(
 
     public static AccountResponse from(AccountResult result) {
         return new AccountResponse(
-            result.id(),
-            result.name(),
-            result.balance(),
-            result.type(),
-            result.createdAt(),
-            result.updatedAt()
+            result.getId(),
+            result.getName(),
+            result.getBalance(),
+            result.getType(),
+            result.getCreatedAt(),
+            result.getUpdatedAt()
         );
     }
 }

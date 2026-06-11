@@ -3,13 +3,14 @@ package com.techfinance.pessoal.api.account.application.mapper;
 import org.springframework.stereotype.Component;
 
 import com.techfinance.pessoal.api.account.adapter.in.dto.request.CategoryRequest;
+import com.techfinance.pessoal.api.account.adapter.in.dto.response.CategoryResponse;
 import com.techfinance.pessoal.api.account.domain.model.Category;
 import com.techfinance.pessoal.api.account.domain.port.out.result.CategoryResult;
 import com.techfinance.pessoal.api.infra.shared.converter.MapperConverter;
 
 @Component
 public class CategoryMapper 
-    extends MapperConverter<CategoryRequest, CategoryResult, Category> {
+    extends MapperConverter<CategoryRequest, CategoryResponse, CategoryResult, Category> {
     
     @Override
     protected Category doToEntity(CategoryRequest request) {
@@ -20,13 +21,14 @@ public class CategoryMapper
     }
 
     @Override
-    protected CategoryResult doToResponse(Category entity) {
-        return new CategoryResult(
-            entity.getId(), 
-            entity.getName(), 
-            entity.getDescription(), 
-            entity.getCreatedAt(), 
-            entity.getUpdatedAt()
-        );
+    protected CategoryResult doToResult(Category entity) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    protected CategoryResponse doToResponse(CategoryResult reult) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

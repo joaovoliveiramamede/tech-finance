@@ -33,7 +33,7 @@ public class CategoryService
             Category saved = repository.save(entity);
 
             log.info("categoria criada com sucesso | categoryId={}", saved.getId());
-            CategoryResult response = mapper.toResponse(saved);
+            CategoryResult response = mapper.toResult(saved);
 
             log.debug(LogMessages.FINISH, "criação", "categoria");
             return response;

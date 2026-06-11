@@ -37,7 +37,7 @@ public class AccountService
             log.info("saved entity: {}", saved);
             log.info(LogMessages.FINISH_SAVED_DATABASE, "criação");
 
-            return mapper.toResponse(saved);
+            return mapper.toResult(saved);
         } catch (Exception exception) {
             log.error(LogMessages.BUSSINESS_ERROR, "criação", Account.class.getName().toString());
             throw new BussinessErrorException(LogMessages.BUSSINESS_ERROR_EXCEPTION_CATEGORY, exception);
