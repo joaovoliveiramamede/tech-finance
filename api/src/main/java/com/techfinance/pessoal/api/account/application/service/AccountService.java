@@ -1,15 +1,13 @@
 package com.techfinance.pessoal.api.account.application.service;
 
-import java.rmi.UnexpectedException;
-
 import org.springframework.stereotype.Service;
 
 import com.techfinance.pessoal.api.account.adapter.in.dto.request.AccountRequest;
-import com.techfinance.pessoal.api.account.adapter.in.dto.response.AccountResponse;
 import com.techfinance.pessoal.api.account.application.mapper.AccountMapper;
 import com.techfinance.pessoal.api.account.domain.model.Account;
 import com.techfinance.pessoal.api.account.domain.port.in.AccountCommand;
 import com.techfinance.pessoal.api.account.domain.port.out.AccountRepository;
+import com.techfinance.pessoal.api.account.domain.port.out.result.AccountResult;
 import com.techfinance.pessoal.api.infra.exception.BussinessErrorException;
 import com.techfinance.pessoal.api.infra.shared.log.LogMessages;
 
@@ -27,7 +25,7 @@ public class AccountService
     private final AccountMapper mapper;
 
     @Override
-    public AccountResponse create(AccountRequest request) throws BussinessErrorException {
+    public AccountResult create(AccountRequest request) throws BussinessErrorException {
         try {
             log.debug(LogMessages.START, "criação", "conta");
             log.info("criando conta | accountName={}", request.name());

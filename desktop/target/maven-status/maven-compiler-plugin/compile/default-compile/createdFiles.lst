@@ -1,4 +1,10 @@
 com\techfinance\pessoal\desktop\controller\RegisterController.class
+com\techfinance\pessoal\desktop\dto\request\RegisterRequest.class
+com\techfinance\pessoal\desktop\service\AuthService.class
 com\techfinance\pessoal\desktop\DesktopApplication.class
 com\techfinance\pessoal\desktop\navigation\AppNavigator.class
+com\techfinance\pessoal\desktop\config\DesktopModule.class
+com\techfinance\pessoal\desktop\navigation\Navigator.class
+com\techfinance\pessoal\desktop\navigation\Route.class
+com\techfinance\pessoal\desktop\config\InjectorProvider.class
 com\techfinance\pessoal\desktop\navigation\SceneNavigator.class

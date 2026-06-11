@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.techfinance.pessoal.api.account.domain.enums.AccountType;
+import com.techfinance.pessoal.api.account.domain.port.out.result.AccountResult;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = Include.NON_NULL)
@@ -31,4 +32,16 @@ public record AccountResponse(
 
     @JsonProperty(value = "data_atualizacao")
     Instant updatedAt
-) {}
+) {
+
+    public static AccountResponse from(AccountResult result) {
+        return new AccountResponse(
+            result.id(),
+            result.name(),
+            result.balance(),
+            result.type(),
+            result.createdAt(),
+            result.updatedAt()
+        );
+    }
+}

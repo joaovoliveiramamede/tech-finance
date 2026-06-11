@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.techfinance.pessoal.api.account.domain.port.out.result.CategoryResult;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = Include.NON_NULL)
@@ -26,4 +27,15 @@ public record CategoryResponse(
 
     @JsonProperty(value = "data_atualizacao")
     Instant updatedAt
-) {}
+) {
+
+    public static CategoryResponse from(CategoryResult result) {
+        return new CategoryResponse(
+            result.id(),
+            result.name(),
+            result.description(),
+            result.createdAt(),
+            result.updatedAt()
+        );
+    }
+}

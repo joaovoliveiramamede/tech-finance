@@ -27,7 +27,7 @@ public class AccountRestController {
 
     @PostMapping("create")
     public ResponseEntity<AccountResponse> create(@Valid @RequestBody AccountRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(AccountResponse.from(service.create(request)));
     }
     
 

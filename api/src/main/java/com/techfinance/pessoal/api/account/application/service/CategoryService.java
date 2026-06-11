@@ -1,14 +1,13 @@
 package com.techfinance.pessoal.api.account.application.service;
 
-import org.apache.commons.logging.Log;
 import org.springframework.stereotype.Service;
 
 import com.techfinance.pessoal.api.account.adapter.in.dto.request.CategoryRequest;
-import com.techfinance.pessoal.api.account.adapter.in.dto.response.CategoryResponse;
 import com.techfinance.pessoal.api.account.application.mapper.CategoryMapper;
 import com.techfinance.pessoal.api.account.domain.model.Category;
 import com.techfinance.pessoal.api.account.domain.port.in.CategoryCommand;
 import com.techfinance.pessoal.api.account.domain.port.out.CategoryRepository;
+import com.techfinance.pessoal.api.account.domain.port.out.result.CategoryResult;
 import com.techfinance.pessoal.api.infra.exception.UnexpectedErrorException;
 import com.techfinance.pessoal.api.infra.shared.log.LogMessages;
 
@@ -25,7 +24,7 @@ public class CategoryService
     private final CategoryMapper mapper;
 
     @Override
-    public CategoryResponse create(CategoryRequest request) throws UnexpectedErrorException {
+    public CategoryResult create(CategoryRequest request) throws UnexpectedErrorException {
         try {
             log.debug(LogMessages.START, "criação", "categoria");
             log.info("criando categoria | categoryName={}", request.name());
@@ -34,7 +33,7 @@ public class CategoryService
             Category saved = repository.save(entity);
 
             log.info("categoria criada com sucesso | categoryId={}", saved.getId());
-            CategoryResponse response = mapper.toResponse(saved);
+            CategoryResult response = mapper.toResponse(saved);
 
             log.debug(LogMessages.FINISH, "criação", "categoria");
             return response;

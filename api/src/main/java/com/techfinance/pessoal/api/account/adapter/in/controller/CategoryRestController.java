@@ -27,7 +27,7 @@ public class CategoryRestController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<CategoryResponse> create(@Valid @RequestBody CategoryRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(CategoryResponse.from(service.create(request)));
     }
     
 
