@@ -22,13 +22,23 @@ public class CategoryMapper
 
     @Override
     protected CategoryResult doToResult(Category entity) {
-        // TODO Auto-generated method stub
-        return null;
+        return CategoryResult.builder()
+            .id(entity.getId())
+            .name(entity.getName())
+            .description(entity.getDescription())
+            .createdAt(entity.getCreatedAt())
+            .updatedAt(entity.getUpdatedAt())
+            .build();
     }
 
     @Override
-    protected CategoryResponse doToResponse(CategoryResult reult) {
-        // TODO Auto-generated method stub
-        return null;
+    protected CategoryResponse doToResponse(CategoryResult result) {
+        return new CategoryResponse(
+            result.getId(),
+            result.getName(),
+            result.getDescription(),
+            result.getCreatedAt(),
+            result.getUpdatedAt()
+        );
     }
 }

@@ -1,8 +1,6 @@
 package com.techfinance.pessoal.api.account.domain.model;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.UUID;
 
 import com.techfinance.pessoal.api.account.domain.enums.AccountType;
 import com.techfinance.pessoal.api.infra.shared.entitybase.EntityBase;

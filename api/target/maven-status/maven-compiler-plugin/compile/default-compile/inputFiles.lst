@@ -11,8 +11,10 @@ C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pess
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\adapter\out\persistence\TransactionPersistenceRepository.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\application\mapper\AccountMapper.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\application\mapper\CategoryMapper.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\application\mapper\TransactionMapper.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\application\service\AccountService.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\application\service\CategoryService.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\application\service\TransactionService.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\enums\AccountType.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\enums\TransactionType.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\model\Account.java
@@ -20,10 +22,12 @@ C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pess
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\model\Transaction.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\AccountCommand.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\CategoryCommand.java
-C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\result\AccountResult.java
-C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\result\CategoryResult.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\TransactionCommand.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\out\AccountRepository.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\out\CategoryRepository.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\out\result\AccountResult.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\out\result\CategoryResult.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\out\result\TransactionResult.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\out\TransactionRepository.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\ApiApplication.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\auth\adapter\in\controller\AuthRestController.java

@@ -31,11 +31,11 @@ public record CategoryResponse(
 
     public static CategoryResponse from(CategoryResult result) {
         return new CategoryResponse(
-            result.id(),
-            result.name(),
-            result.description(),
-            result.createdAt(),
-            result.updatedAt()
+            result.getId(),
+            result.getName(),
+            result.getDescription(),
+            result.getCreatedAt(),
+            result.getUpdatedAt()
         );
     }
 }

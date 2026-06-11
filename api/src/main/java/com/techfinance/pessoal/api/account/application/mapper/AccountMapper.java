@@ -34,8 +34,15 @@ public class AccountMapper
     }
 
     @Override
-    protected AccountResponse doToResponse(AccountResult reult) {
-        // TODO Auto-generated method stub
-        return null;
+    protected AccountResponse doToResponse(AccountResult result) {
+        return new AccountResponse(
+            result.getId(), 
+            result.getName(),
+            result.getBalance(),
+            result.getType(),
+            result.getCreatedAt(), 
+            result.getUpdatedAt()
+        );
+
     }
 }
