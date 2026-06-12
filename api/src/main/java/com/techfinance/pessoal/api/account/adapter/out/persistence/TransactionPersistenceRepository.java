@@ -21,11 +21,11 @@ public class TransactionPersistenceRepository implements TransactionRepository {
     public Transaction save(Transaction entity) throws UnexpectedErrorException {
         try {
 
-            log.info("salvando transação | accountId={}", entity.getAccount().getId());
+            log.info("salvando transação | accountId={}", entity.getId());
             return repository.save(entity);
 
         } catch (Exception exception) {
-            log.error("erro ao salvar transação | accountId={}", entity.getAccount().getId());
+            log.error("erro ao salvar transação | accountId={}", entity.getId());
             throw new UnexpectedErrorException("erro ao salvar transação", exception);
         }
     }

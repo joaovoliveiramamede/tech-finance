@@ -6,6 +6,7 @@ import com.techfinance.pessoal.api.account.adapter.in.dto.request.TransactionReq
 import com.techfinance.pessoal.api.account.application.mapper.TransactionMapper;
 import com.techfinance.pessoal.api.account.domain.model.Transaction;
 import com.techfinance.pessoal.api.account.domain.port.in.TransactionCommand;
+import com.techfinance.pessoal.api.account.domain.port.out.TransactionRepository;
 import com.techfinance.pessoal.api.account.domain.port.out.result.TransactionResult;
 import com.techfinance.pessoal.api.infra.exception.BussinessErrorException;
 import com.techfinance.pessoal.api.infra.shared.log.LogMessages;
@@ -20,6 +21,7 @@ public class TransactionService
     implements TransactionCommand {
     
     private final TransactionMapper mapper;
+    private final TransactionRepository repository;
 
     @Override
     public TransactionResult create(TransactionRequest request) throws BussinessErrorException {
@@ -28,10 +30,16 @@ public class TransactionService
             log.info("criando transacao | transactionAccountId={}", request.accountId());
             Transaction entity = mapper.toEntity(request);
 
+            Transaction saved = repository.save(entity);
+            log.info("transacao criada com sucesso | transactionId={}", saved.getId());
 
+            TransactionResult result = mapper.toResult(saved);
 
-        } catch (Exception e) {
-            // TODO: handle exception
+            log.debug(LogMessages.FINISH, "criação", "transacao");
+            return result;
+        } catch (Exception exception) {
+            log.error("erro ao criar transacao | message={}", exception.getMessage());
+            throw new BussinessErrorException("erro ao criar transacao", exception);
         }
     }
 

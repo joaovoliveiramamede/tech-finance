@@ -5,16 +5,11 @@ import java.time.Instant;
 import java.util.UUID;
 
 import com.techfinance.pessoal.api.account.domain.enums.TransactionType;
+import com.techfinance.pessoal.api.account.domain.port.out.result.TransactionResult;
 
 public record TransactionResponse(
 
     UUID id,
-
-    UUID accountId,
-    String accountName,
-
-    UUID categoryId,
-    String categoryName,
 
     BigDecimal amount,
 
@@ -28,4 +23,16 @@ public record TransactionResponse(
 
     Instant updatedAt
 
-) {}
+) {
+    public static TransactionResponse from(TransactionResult result) {
+        return new TransactionResponse(
+            result.getId(),
+            result.getAmount(),
+            result.getType(),
+            result.getDescription(),
+            result.getOccurredAt(),
+            result.getCreatedAt(),
+            result.getUpdatedAt()
+        );
+    }
+}

@@ -8,4 +8,5 @@ public final class ApiRoute {
 
     public static final String CATEGORY = "/category";
     public static final String ACCOUNT = "/account";
+    public static final String TRANSACTION = "/transaction";
 }

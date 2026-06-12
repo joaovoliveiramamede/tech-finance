@@ -42,6 +42,7 @@ public class SecurityConfig {
                     .requestMatchers("/users/create").permitAll()
                     .requestMatchers(ApiRoute.API_V1 + ApiRoute.CATEGORY + "/**").permitAll()
                     .requestMatchers(ApiRoute.API_V1 + ApiRoute.ACCOUNT + "/**").permitAll()
+                    .requestMatchers(ApiRoute.API_V1 + ApiRoute.TRANSACTION + "/**").permitAll()
                     .requestMatchers("/auth/**").permitAll()
                     .anyRequest().authenticated()
             )

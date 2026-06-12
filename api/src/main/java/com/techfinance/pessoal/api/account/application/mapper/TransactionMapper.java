@@ -14,20 +14,33 @@ public class TransactionMapper
     
     @Override
     protected Transaction doToEntity(TransactionRequest request) {
-        // TODO Auto-generated method stub
-        return null;
+        return Transaction.builder()
+            .amount(request.amount())
+            .description(request.description())
+            .build();
     }
 
     @Override
     protected TransactionResult doToResult(Transaction entity) {
-        // TODO Auto-generated method stub
-        return null;
+        return TransactionResult.builder()
+            .amount(entity.getAmount())
+            .description(entity.getDescription())
+            .createdAt(entity.getCreatedAt())
+            .updatedAt(entity.getUpdatedAt())
+            .build();
     }
 
     @Override
-    protected TransactionResponse doToResponse(TransactionResult reult) {
-        // TODO Auto-generated method stub
-        return null;
+    protected TransactionResponse doToResponse(TransactionResult result) {
+        return new TransactionResponse(
+            result.getId(),
+            result.getAmount(),
+            result.getType(),
+            result.getDescription(),
+            result.getOccurredAt(),
+            result.getCreatedAt(),
+            result.getUpdatedAt()
+        );
     }
 
 }
