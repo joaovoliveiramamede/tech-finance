@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 
 import com.techfinance.pessoal.api.account.adapter.in.dto.request.TransactionRequest;
 import com.techfinance.pessoal.api.account.adapter.in.dto.response.TransactionResponse;
+import com.techfinance.pessoal.api.account.domain.model.Account;
+import com.techfinance.pessoal.api.account.domain.model.Category;
 import com.techfinance.pessoal.api.account.domain.model.Transaction;
 import com.techfinance.pessoal.api.account.domain.port.out.result.TransactionResult;
 import com.techfinance.pessoal.api.infra.shared.converter.MapperConverter;
@@ -16,7 +18,9 @@ public class TransactionMapper
     protected Transaction doToEntity(TransactionRequest request) {
         return Transaction.builder()
             .amount(request.amount())
+            .type(request.type())
             .description(request.description())
+            .occurredAt(request.occurredAt())
             .build();
     }
 
@@ -41,6 +45,15 @@ public class TransactionMapper
             result.getCreatedAt(),
             result.getUpdatedAt()
         );
+    }
+
+    public Transaction toEntityWithAccountAndCategory(TransactionRequest request, Account account, Category category) {
+        return Transaction.builder()
+            .amount(request.amount())
+            .description(request.description())
+            .account(account)
+            .category(category)
+            .build();
     }
 
 }
