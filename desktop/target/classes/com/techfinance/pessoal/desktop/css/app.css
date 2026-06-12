@@ -1,0 +1,175 @@
+.app-root {
+    -fx-background-color: #f5f7fb;
+    -fx-font-family: "Segoe UI";
+}
+
+.sidebar {
+    -fx-background-color: #172033;
+    -fx-pref-width: 248;
+    -fx-min-width: 248;
+}
+
+.brand-block {
+    -fx-padding: 0 0 28 0;
+}
+
+.brand-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+}
+
+.brand-subtitle,
+.user-caption {
+    -fx-text-fill: #9da8ba;
+    -fx-font-size: 12px;
+}
+
+.sidebar-nav {
+    -fx-padding: 8 0 0 0;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c7d0df;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 14;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #22304a;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar-button-active {
+    -fx-background-color: #2f6fed;
+    -fx-text-fill: #ffffff;
+}
+
+.user-block {
+    -fx-background-color: #202c43;
+    -fx-background-radius: 8;
+    -fx-padding: 12;
+}
+
+.user-name {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: 700;
+}
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c7d0df;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8 0 0 0;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-text-fill: #ffffff;
+}
+
+.topbar {
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent transparent #e4e8ef transparent;
+}
+
+.topbar-title {
+    -fx-text-fill: #172033;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+}
+
+.content-area {
+    -fx-background-color: #f5f7fb;
+}
+
+.page {
+    -fx-background-color: #f5f7fb;
+}
+
+.page-title {
+    -fx-text-fill: #172033;
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+}
+
+.page-subtitle {
+    -fx-text-fill: #697386;
+    -fx-font-size: 14px;
+}
+
+.primary-button {
+    -fx-background-color: #2f6fed;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: 700;
+    -fx-padding: 10 16;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #235fcf;
+}
+
+.metric-card,
+.panel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #e4e8ef;
+    -fx-border-radius: 8;
+    -fx-padding: 20;
+}
+
+.metric-card {
+    -fx-pref-width: 260;
+    -fx-min-height: 112;
+}
+
+.metric-label {
+    -fx-text-fill: #697386;
+    -fx-font-size: 13px;
+}
+
+.metric-value {
+    -fx-text-fill: #172033;
+    -fx-font-size: 26px;
+    -fx-font-weight: 700;
+}
+
+.income {
+    -fx-text-fill: #0f8f5f;
+}
+
+.expense {
+    -fx-text-fill: #c2413d;
+}
+
+.panel-title {
+    -fx-text-fill: #172033;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+}
+
+.empty-state {
+    -fx-text-fill: #8a94a6;
+    -fx-font-size: 14px;
+}
+
+.filter-bar {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e4e8ef;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 14;
+}
+
+.data-table {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #e4e8ef;
+    -fx-border-radius: 8;
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" spacing="20" styleClass="page">
+    <padding>
+        <Insets top="28" right="32" bottom="32" left="32"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT">
+        <VBox spacing="4">
+            <Label text="Contas" styleClass="page-title"/>
+            <Label text="Carteiras, bancos e saldos" styleClass="page-subtitle"/>
+        </VBox>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Button text="Nova conta" styleClass="primary-button"/>
+    </HBox>
+
+    <TableView VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn text="Nome" prefWidth="260"/>
+            <TableColumn text="Tipo" prefWidth="180"/>
+            <TableColumn text="Saldo" prefWidth="180"/>
+            <TableColumn text="Criada em" prefWidth="180"/>
+        </columns>
+    </TableView>
+</VBox>

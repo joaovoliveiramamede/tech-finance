@@ -1,6 +1,7 @@
 package com.techfinance.pessoal.desktop.navigation;
 
 import com.techfinance.pessoal.desktop.DesktopApplication;
+import com.techfinance.pessoal.desktop.service.AuthService;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,6 +30,19 @@ public final class AppNavigator {
 
     public static void navigateToRegister() {
         load("register.fxml", "register.css");
+    }
+
+    public static void navigateToHome() {
+        AuthService authService = DesktopApplication
+                .getInjector()
+                .getInstance(AuthService.class);
+
+        if (!authService.isAuthenticated()) {
+            navigateToLogin();
+            return;
+        }
+
+        load("main.fxml", "app.css");
     }
 
     public static void navigateToLogin() {

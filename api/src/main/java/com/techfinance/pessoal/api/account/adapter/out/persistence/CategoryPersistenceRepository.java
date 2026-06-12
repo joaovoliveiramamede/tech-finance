@@ -1,5 +1,8 @@
 package com.techfinance.pessoal.api.account.adapter.out.persistence;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import com.techfinance.pessoal.api.account.domain.model.Category;
@@ -24,6 +27,17 @@ public class CategoryPersistenceRepository implements CategoryRepository {
             return repository.save(entity);
         } catch (Exception exception) {
             throw new UnexpectedErrorException("erro ao salvar categoria");
+        }
+    }
+
+    @Override
+    public Optional<Category> findById(UUID id) throws UnexpectedErrorException {
+        try {
+            log.info("buscando categoria no banco de dados | categoryId={}", id);
+            return repository.findById(id);
+        } catch (Exception exception) {
+            log.error("erro ao buscar categoria no banco de dados | categoryId={}", id);
+            throw new UnexpectedErrorException("erro ao buscar categoria no banco de dados", exception);
         }
     }
 

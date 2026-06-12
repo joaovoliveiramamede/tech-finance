@@ -1,5 +1,7 @@
 package com.techfinance.pessoal.desktop.navigation;
 
+import com.techfinance.pessoal.desktop.DesktopApplication;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
@@ -22,6 +24,9 @@ public class SceneNavigator {
             );
 
             FXMLLoader loader = new FXMLLoader(url);
+            loader.setControllerFactory(
+                DesktopApplication.getInjector()::getInstance
+            );
             
             Node view = loader.load();
 

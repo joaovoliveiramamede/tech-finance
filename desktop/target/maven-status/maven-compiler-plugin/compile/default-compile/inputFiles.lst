@@ -1,8 +1,12 @@
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\config\DesktopModule.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\config\InjectorProvider.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\LoginController.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\MainController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\RegisterController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\DesktopApplication.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\dto\request\LoginRequest.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\dto\request\RegisterRequest.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\dto\response\AuthResponse.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\AppNavigator.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\Navigator.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\Route.java

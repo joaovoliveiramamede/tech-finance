@@ -20,7 +20,7 @@ public class DesktopApplication extends Application {
         );
 
         AppNavigator.init(stage);
-        AppNavigator.navigateToRegister();
+        AppNavigator.navigateToLogin();
     }
 
     public static Injector getInjector() {

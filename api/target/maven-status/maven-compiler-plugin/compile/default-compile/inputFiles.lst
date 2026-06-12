@@ -22,6 +22,7 @@ C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pess
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\model\Category.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\model\Transaction.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\AccountCommand.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\AccountUseCase.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\CategoryCommand.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\in\TransactionCommand.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\account\domain\port\out\AccountRepository.java

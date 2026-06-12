@@ -6,5 +6,5 @@ import com.techfinance.pessoal.api.infra.exception.UnexpectedErrorException;
 
 public interface CategoryCommand {
     CategoryResult create(CategoryRequest request) throws UnexpectedErrorException;
-
+    
 }
