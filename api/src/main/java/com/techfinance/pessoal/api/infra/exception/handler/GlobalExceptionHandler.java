@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.techfinance.pessoal.api.infra.exception.BusinessErrorException;
 import com.techfinance.pessoal.api.infra.exception.NotFoundErrorException;
+import com.techfinance.pessoal.api.infra.exception.UnauthorizedErrorException;
 import com.techfinance.pessoal.api.infra.exception.UnexpectedErrorException;
 
 import lombok.extern.log4j.Log4j2;
@@ -15,6 +16,14 @@ import lombok.extern.log4j.Log4j2;
 @RestControllerAdvice
 @Log4j2
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(UnauthorizedErrorException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorized(UnauthorizedErrorException exception) {
+        log.warn("acesso não autorizado | message={}", exception.getMessage());
+        return ResponseEntity
+            .status(HttpStatus.UNAUTHORIZED)
+            .body(ErrorResponse.of(exception.getMessage()));
+    }
 
     @ExceptionHandler(NotFoundErrorException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(NotFoundErrorException exception) {

@@ -5,7 +5,15 @@ import java.math.BigDecimal;
 import com.techfinance.pessoal.api.account.domain.enums.AccountType;
 import com.techfinance.pessoal.api.account.domain.enums.TransactionType;
 import com.techfinance.pessoal.api.infra.shared.entitybase.EntityBase;
-import jakarta.persistence.*;
+import com.techfinance.pessoal.api.user.domain.model.User;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +38,10 @@ public class Account extends EntityBase {
     @Enumerated(value = EnumType.STRING)
     private AccountType type;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private User user;
+
     public void applyTransaction(Transaction transaction) {
         if (transaction.getType() == TransactionType.INCOME) {
             credit(transaction.getAmount());
@@ -50,5 +62,4 @@ public class Account extends EntityBase {
 
         this.balance = this.balance.subtract(amount);
     }
-
 }

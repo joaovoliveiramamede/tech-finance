@@ -13,12 +13,13 @@ import com.techfinance.pessoal.api.auth.adapter.in.dto.request.RegisterRequest;
 import com.techfinance.pessoal.api.auth.adapter.in.dto.response.AuthResponse;
 import com.techfinance.pessoal.api.auth.application.service.AuthService;
 import com.techfinance.pessoal.api.infra.shared.routes.ApiRoute;
+import com.techfinance.pessoal.api.user.adapter.in.dto.response.UserResponse;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(ApiRoute.AUTH)
+@RequestMapping(value = ApiRoute.API_V1 + ApiRoute.AUTH)
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AuthRestController {
@@ -26,13 +27,16 @@ public class AuthRestController {
     private final AuthService service;
 
     @PostMapping("register")
-    public ResponseEntity<Void> register(@Valid @RequestBody RegisterRequest request) {
-        service.register(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .body(AuthResponse.from(service.register(request)));
     }
 
     @PostMapping("login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(service.login(request));
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(AuthResponse.from(service.login(request)));
     }
 }
