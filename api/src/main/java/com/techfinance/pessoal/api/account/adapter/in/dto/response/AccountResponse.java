@@ -27,6 +27,9 @@ public record AccountResponse(
     @JsonProperty(value = "tipo")
     AccountType type,
 
+    @JsonProperty(value = "id_usuario")
+    UUID userId,
+
     @JsonProperty(value = "data_criacao")
     Instant createdAt,
 
@@ -40,6 +43,7 @@ public record AccountResponse(
             result.getName(),
             result.getBalance(),
             result.getType(),
+            result.getUserId(),
             result.getCreatedAt(),
             result.getUpdatedAt()
         );

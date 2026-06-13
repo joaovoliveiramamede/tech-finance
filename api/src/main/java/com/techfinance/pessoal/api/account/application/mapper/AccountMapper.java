@@ -40,6 +40,7 @@ public class AccountMapper
             result.getName(),
             result.getBalance(),
             result.getType(),
+            result.getUserId(),
             result.getCreatedAt(), 
             result.getUpdatedAt()
         );

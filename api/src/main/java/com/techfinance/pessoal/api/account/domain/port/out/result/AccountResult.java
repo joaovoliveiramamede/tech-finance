@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class AccountResult {
 
     private UUID id;
+    private UUID userId;
     private String name;
     private BigDecimal balance;
     private AccountType type;

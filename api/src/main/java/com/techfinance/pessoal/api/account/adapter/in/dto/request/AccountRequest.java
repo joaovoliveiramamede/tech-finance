@@ -6,6 +6,7 @@ import com.techfinance.pessoal.api.account.domain.enums.AccountType;
 import com.techfinance.pessoal.api.infra.shared.validation.annotations.RequiredField;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record AccountRequest(
@@ -20,5 +21,9 @@ public record AccountRequest(
 
         @JsonProperty(value = "tipo")
         @RequiredField(property = "tipo")
-        AccountType type
+        AccountType type,
+
+        @JsonProperty(value = "id_usuario")
+        @RequiredField(property = "id_usuario")
+        UUID userId
 ) {}
