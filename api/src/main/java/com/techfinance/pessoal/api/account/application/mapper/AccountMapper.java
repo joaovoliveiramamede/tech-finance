@@ -25,6 +25,7 @@ public class AccountMapper
     protected AccountResult doToResult(Account entity) {
         return AccountResult.builder()
             .id(entity.getId())
+            .userId(entity.getUser() != null ? entity.getUser().getId() : null)
             .name(entity.getName())
             .type(entity.getType())
             .balance(entity.getBalance())

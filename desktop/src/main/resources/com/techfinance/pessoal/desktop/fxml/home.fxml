@@ -8,7 +8,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" spacing="24" styleClass="page">
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.techfinance.pessoal.desktop.controller.HomeController"
+      spacing="24" styleClass="page">
     <padding>
         <Insets top="28" right="32" bottom="32" left="32"/>
     </padding>
@@ -21,15 +23,15 @@
     <GridPane hgap="16" vgap="16">
         <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="metric-card" spacing="8">
             <Label text="Saldo total" styleClass="metric-label"/>
-            <Label text="R$ 0,00" styleClass="metric-value"/>
+            <Label fx:id="totalBalanceLabel" text="R$ 0,00" styleClass="metric-value"/>
         </VBox>
         <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="metric-card" spacing="8">
             <Label text="Receitas do mês" styleClass="metric-label"/>
-            <Label text="R$ 0,00" styleClass="metric-value income"/>
+            <Label fx:id="incomeLabel" text="R$ 0,00" styleClass="metric-value income"/>
         </VBox>
         <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="metric-card" spacing="8">
             <Label text="Despesas do mês" styleClass="metric-label"/>
-            <Label text="R$ 0,00" styleClass="metric-value expense"/>
+            <Label fx:id="expenseLabel" text="R$ 0,00" styleClass="metric-value expense"/>
         </VBox>
     </GridPane>
 
@@ -37,12 +39,12 @@
         <VBox styleClass="panel" spacing="14" HBox.hgrow="ALWAYS">
             <Label text="Últimas transações" styleClass="panel-title"/>
             <Region VBox.vgrow="ALWAYS"/>
-            <Label text="Nenhuma transação registrada" styleClass="empty-state"/>
+            <Label fx:id="lastTransactionsLabel" text="Carregando..." styleClass="empty-state" wrapText="true"/>
         </VBox>
         <VBox styleClass="panel" spacing="14" HBox.hgrow="ALWAYS">
             <Label text="Categorias em destaque" styleClass="panel-title"/>
             <Region VBox.vgrow="ALWAYS"/>
-            <Label text="Nenhuma categoria registrada" styleClass="empty-state"/>
+            <Label fx:id="topCategoriesLabel" text="Carregando..." styleClass="empty-state" wrapText="true"/>
         </VBox>
     </HBox>
 </VBox>

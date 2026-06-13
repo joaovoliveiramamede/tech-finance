@@ -44,7 +44,9 @@ public class MainController {
     @FXML
     private void initialize() {
         navigator = new SceneNavigator(contentArea);
-        userNameLabel.setText(authService.getUsername());
+        userNameLabel.setText(authService.getName() != null
+            ? authService.getName()
+            : authService.getUsername());
         showHome();
     }
 

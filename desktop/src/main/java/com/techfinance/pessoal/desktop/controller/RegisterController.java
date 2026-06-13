@@ -4,9 +4,12 @@ import com.google.inject.Inject;
 import com.techfinance.pessoal.desktop.dto.request.RegisterRequest;
 import com.techfinance.pessoal.desktop.navigation.AppNavigator;
 import com.techfinance.pessoal.desktop.service.AuthService;
+import com.techfinance.pessoal.desktop.util.FxTasks;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class RegisterController {
 
@@ -31,7 +34,6 @@ public class RegisterController {
 
     @FXML
     private void handleRegister() {
-
         String name = nameField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -47,31 +49,22 @@ public class RegisterController {
         }
 
         if (isBlank(username)) {
-            showError("Informe username.");
+            showError("Informe o usuário.");
             return;
         }
 
         if (password.length() < 6) {
-            showError("Senha inválida.");
+            showError("Senha inválida. Mínimo 6 caracteres.");
             return;
         }
 
-        try {
-
-            authService.register(
-                    new RegisterRequest(
-                            name,
-                            username,
-                            password,
-                            "USER"
-                    )
-            );
-
-            AppNavigator.navigateToLogin();
-
-        } catch (Exception e) {
-            showError(e.getMessage());
-        }
+        FxTasks.run(
+            () -> authService.register(
+                new RegisterRequest(name, username, password, "USER")
+            ),
+            AppNavigator::navigateToHome,
+            error -> showError(resolveMessage(error))
+        );
     }
 
     @FXML
@@ -79,10 +72,20 @@ public class RegisterController {
         AppNavigator.navigateToLogin();
     }
 
-    private void showError(String msg) {
-        errorLabel.setText(msg);
+    private void showError(String message) {
+        errorLabel.setText(message);
         errorLabel.setVisible(true);
         errorLabel.setManaged(true);
+    }
+
+    private String resolveMessage(Throwable error) {
+        if (error.getCause() != null && error.getCause().getMessage() != null) {
+            return error.getCause().getMessage();
+        }
+
+        return error.getMessage() != null
+            ? error.getMessage()
+            : "Erro ao registrar usuário.";
     }
 
     private boolean isBlank(String value) {

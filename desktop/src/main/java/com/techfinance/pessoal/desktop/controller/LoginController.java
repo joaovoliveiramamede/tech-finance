@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.techfinance.pessoal.desktop.dto.request.LoginRequest;
 import com.techfinance.pessoal.desktop.navigation.AppNavigator;
 import com.techfinance.pessoal.desktop.service.AuthService;
+import com.techfinance.pessoal.desktop.util.FxTasks;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -30,12 +31,11 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
-
         String username = usernameField.getText();
         String password = passwordField.getText();
 
         if (isBlank(username)) {
-            showError("Informe seu username.");
+            showError("Informe seu usuário.");
             return;
         }
 
@@ -44,12 +44,11 @@ public class LoginController {
             return;
         }
 
-        try {
-            authService.login(new LoginRequest(username, password));
-            AppNavigator.navigateToHome();
-        } catch (Exception e) {
-            showError(e.getMessage());
-        }
+        FxTasks.run(
+            () -> authService.login(new LoginRequest(username, password)),
+            AppNavigator::navigateToHome,
+            error -> showError(resolveMessage(error))
+        );
     }
 
     @FXML
@@ -61,6 +60,16 @@ public class LoginController {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
         errorLabel.setManaged(true);
+    }
+
+    private String resolveMessage(Throwable error) {
+        if (error.getCause() != null && error.getCause().getMessage() != null) {
+            return error.getCause().getMessage();
+        }
+
+        return error.getMessage() != null
+            ? error.getMessage()
+            : "Erro ao realizar login.";
     }
 
     private boolean isBlank(String value) {

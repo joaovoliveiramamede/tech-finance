@@ -1,6 +1,12 @@
 package com.techfinance.pessoal.desktop.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public record LoginRequest(
-        String username,
-        String password
+
+    @JsonProperty("usuario")
+    String username,
+
+    @JsonProperty("senha")
+    String password
 ) {}

@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" spacing="20" styleClass="page">
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.techfinance.pessoal.desktop.controller.AccountsController"
+      spacing="20" styleClass="page">
     <padding>
         <Insets top="28" right="32" bottom="32" left="32"/>
     </padding>
@@ -20,15 +22,17 @@
             <Label text="Carteiras, bancos e saldos" styleClass="page-subtitle"/>
         </VBox>
         <HBox HBox.hgrow="ALWAYS"/>
-        <Button text="Nova conta" styleClass="primary-button"/>
+        <Button fx:id="createButton" text="Nova conta" styleClass="primary-button" onAction="#handleCreate"/>
     </HBox>
 
-    <TableView VBox.vgrow="ALWAYS" styleClass="data-table">
+    <Label fx:id="errorLabel" visible="false" managed="false" styleClass="error-label"/>
+
+    <TableView fx:id="accountsTable" VBox.vgrow="ALWAYS" styleClass="data-table">
         <columns>
-            <TableColumn text="Nome" prefWidth="260"/>
-            <TableColumn text="Tipo" prefWidth="180"/>
-            <TableColumn text="Saldo" prefWidth="180"/>
-            <TableColumn text="Criada em" prefWidth="180"/>
+            <TableColumn fx:id="nameColumn" text="Nome" prefWidth="260"/>
+            <TableColumn fx:id="typeColumn" text="Tipo" prefWidth="180"/>
+            <TableColumn fx:id="balanceColumn" text="Saldo" prefWidth="180"/>
+            <TableColumn fx:id="createdAtColumn" text="Criada em" prefWidth="180"/>
         </columns>
     </TableView>
 </VBox>
