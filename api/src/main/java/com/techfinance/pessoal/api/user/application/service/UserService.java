@@ -11,12 +11,11 @@ import org.springframework.stereotype.Service;
 import com.techfinance.pessoal.api.infra.exception.BussinessErrorException;
 import com.techfinance.pessoal.api.infra.security.exception.NotFoundErrorException;
 import com.techfinance.pessoal.api.user.adapter.in.dto.request.UserRequest;
-import com.techfinance.pessoal.api.user.adapter.in.dto.response.UserResponse;
 import com.techfinance.pessoal.api.user.application.mapper.UserMapper;
 import com.techfinance.pessoal.api.user.domain.model.User;
-import com.techfinance.pessoal.api.user.domain.port.in.UserCommand;
-import com.techfinance.pessoal.api.user.domain.port.in.UserQuery;
+import com.techfinance.pessoal.api.user.domain.port.in.UserUseCase;
 import com.techfinance.pessoal.api.user.domain.port.out.UserRepository;
+import com.techfinance.pessoal.api.user.domain.port.out.result.UserResult;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,8 +24,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequiredArgsConstructor
 public class UserService implements 
-    UserCommand,
-    UserQuery,
+    UserUseCase,
     UserDetailsService {
 
     private final UserRepository repository;
@@ -34,7 +32,7 @@ public class UserService implements
     private final PasswordEncoder encoder;
 
     @Override
-    public UserResponse create(UserRequest request) throws BussinessErrorException {
+    public UserResult create(UserRequest request) throws BussinessErrorException {
         try {
             log.info("iniciando criação do usuário | name={}", request.name());
             User entity = mapper.toEntity(request);
@@ -47,20 +45,20 @@ public class UserService implements
             User saved = repository.save(entity);
             log.info("usuário salvo com sucesso");
 
-            return mapper.toResponse(saved);
+            return mapper.toResult(saved);
         } catch (Exception exception) {
             throw new BussinessErrorException("erro ao salvar usuário", exception);
         }
     }
 
     @Override
-    public UserResponse byUsername(String username) throws NotFoundErrorException, BussinessErrorException {
+    public UserResult byUsername(String username) throws NotFoundErrorException, BussinessErrorException {
         try {
             log.info("iniciando busca do usuário pelo username | username={}", username);
             User found = Optional.ofNullable(repository.findByUsername(username))
                 .orElseThrow(() -> new NotFoundErrorException("usuário não encontrado com esse username | username=" + username));
             log.info("usuário encontrado");
-        return mapper.toResponse(found);
+            return mapper.toResult(found);
         } catch (NotFoundErrorException exception) {
             throw exception;
         } catch (Exception exception) {

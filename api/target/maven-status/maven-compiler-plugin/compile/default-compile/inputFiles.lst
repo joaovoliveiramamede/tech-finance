@@ -67,4 +67,6 @@ C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pess
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\user\domain\model\User.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\user\domain\port\in\UserCommand.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\user\domain\port\in\UserQuery.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\user\domain\port\in\UserUseCase.java
+C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\user\domain\port\out\result\UserResult.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\user\domain\port\out\UserRepository.java

@@ -9,4 +9,7 @@ public final class ApiRoute {
     public static final String CATEGORY = "/category";
     public static final String ACCOUNT = "/account";
     public static final String TRANSACTION = "/transaction";
+
+    public static final String AUTH = "/auth";
+    public static final String USER = "/user";
 }

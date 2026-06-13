@@ -43,6 +43,7 @@ public class SecurityConfig {
                     .requestMatchers(ApiRoute.API_V1 + ApiRoute.CATEGORY + "/**").permitAll()
                     .requestMatchers(ApiRoute.API_V1 + ApiRoute.ACCOUNT + "/**").permitAll()
                     .requestMatchers(ApiRoute.API_V1 + ApiRoute.TRANSACTION + "/**").permitAll()
+                    .requestMatchers(ApiRoute.API_V1 + ApiRoute.USER + "/**").permitAll()
                     .requestMatchers("/auth/**").permitAll()
                     .anyRequest().authenticated()
             )
