@@ -2,7 +2,7 @@ package com.techfinance.pessoal.api.user.domain.enums;
 
 import java.util.Arrays;
 
-import com.techfinance.pessoal.api.infra.security.exception.NotFoundErrorException;
+import com.techfinance.pessoal.api.infra.exception.NotFoundErrorException;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +24,4 @@ public enum Role {
             .orElseThrow(() -> new NotFoundErrorException(
                 "erro ao encontrar o papel do usuário"));
     }
-
 }

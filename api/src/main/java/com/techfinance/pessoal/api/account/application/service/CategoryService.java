@@ -8,7 +8,7 @@ import com.techfinance.pessoal.api.account.domain.model.Category;
 import com.techfinance.pessoal.api.account.domain.port.in.CategoryCommand;
 import com.techfinance.pessoal.api.account.domain.port.out.CategoryRepository;
 import com.techfinance.pessoal.api.account.domain.port.out.result.CategoryResult;
-import com.techfinance.pessoal.api.infra.exception.UnexpectedErrorException;
+import com.techfinance.pessoal.api.infra.exception.BusinessErrorException;
 import com.techfinance.pessoal.api.infra.shared.log.LogMessages;
 
 import lombok.RequiredArgsConstructor;
@@ -17,30 +17,27 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class CategoryService
-    implements CategoryCommand {
-    
+public class CategoryService implements CategoryCommand {
+
     private final CategoryRepository repository;
     private final CategoryMapper mapper;
 
     @Override
-    public CategoryResult create(CategoryRequest request) throws UnexpectedErrorException {
+    public CategoryResult create(CategoryRequest request) throws BusinessErrorException {
         try {
             log.debug(LogMessages.START, "criação", "categoria");
             log.info("criando categoria | categoryName={}", request.name());
-            Category entity = mapper.toEntity(request);
 
+            Category entity = mapper.toEntity(request);
             Category saved = repository.save(entity);
 
             log.info("categoria criada com sucesso | categoryId={}", saved.getId());
-            CategoryResult response = mapper.toResult(saved);
-
             log.debug(LogMessages.FINISH, "criação", "categoria");
-            return response;
+
+            return mapper.toResult(saved);
         } catch (Exception exception) {
-            log.error("erro ao criar categoria | message={}", exception.getMessage());
-            throw new UnexpectedErrorException("erro ao criar categoria", exception);
+            log.error(LogMessages.BUSINESS_ERROR, "criação", Category.class.getSimpleName());
+            throw new BusinessErrorException(LogMessages.BUSINESS_ERROR_EXCEPTION_CATEGORY, exception);
         }
     }
-
 }

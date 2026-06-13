@@ -18,7 +18,6 @@ public class UserResult {
     private UUID id;
     private String name;
     private String username;
-    private String password;
     private Role role;
     private Instant createdAt;
     private Instant updatedAt;

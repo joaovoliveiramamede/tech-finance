@@ -15,7 +15,8 @@ import com.techfinance.pessoal.api.account.domain.port.out.AccountRepository;
 import com.techfinance.pessoal.api.account.domain.port.out.CategoryRepository;
 import com.techfinance.pessoal.api.account.domain.port.out.TransactionRepository;
 import com.techfinance.pessoal.api.account.domain.port.out.result.TransactionResult;
-import com.techfinance.pessoal.api.infra.exception.BussinessErrorException;
+import com.techfinance.pessoal.api.infra.exception.BusinessErrorException;
+import com.techfinance.pessoal.api.infra.exception.NotFoundErrorException;
 import com.techfinance.pessoal.api.infra.shared.log.LogMessages;
 
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,8 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class TransactionService 
-    implements TransactionCommand {
-    
+public class TransactionService implements TransactionCommand {
+
     private final TransactionMapper mapper;
     private final TransactionRepository repository;
     private final AccountRepository accountRepository;
@@ -34,17 +34,19 @@ public class TransactionService
 
     @Override
     @Transactional
-    public TransactionResult create(TransactionRequest request) throws BussinessErrorException {
+    public TransactionResult create(TransactionRequest request) throws BusinessErrorException {
         try {
-            log.debug(LogMessages.START, "criação", "transacao");
-            log.info("criando transacao | transactionAccountId={}", request.accountId());
+            log.debug(LogMessages.START, "criação", "transação");
+            log.info("criando transação | accountId={}", request.accountId());
             validate(request);
-            
+
             Account account = accountRepository.findById(request.accountId())
-                .orElseThrow(() -> new BussinessErrorException("conta nao encontrada"));
+                .orElseThrow(() -> new NotFoundErrorException(
+                    "conta não encontrada | accountId=" + request.accountId()));
 
             Category category = categoryRepository.findById(request.categoryId())
-                .orElseThrow(() -> new BussinessErrorException("categoria nao encontrada"));
+                .orElseThrow(() -> new NotFoundErrorException(
+                    "categoria não encontrada | categoryId=" + request.categoryId()));
 
             Transaction entity = mapper.toEntityWithAccountAndCategory(request, account, category);
 
@@ -52,34 +54,33 @@ public class TransactionService
             accountRepository.save(account);
 
             Transaction saved = repository.save(entity);
-            log.info("transacao criada com sucesso | transactionId={}", saved.getId());
+            log.info("transação criada com sucesso | transactionId={}", saved.getId());
+            log.debug(LogMessages.FINISH, "criação", "transação");
 
-            TransactionResult result = mapper.toResult(saved);
-
-            log.debug(LogMessages.FINISH, "criação", "transacao");
-            return result;
+            return mapper.toResult(saved);
+        } catch (NotFoundErrorException exception) {
+            throw exception;
         } catch (IllegalArgumentException | IllegalStateException exception) {
-            throw new BussinessErrorException(exception.getMessage(), exception);
-        } catch (BussinessErrorException exception) {
+            throw new BusinessErrorException(exception.getMessage(), exception);
+        } catch (BusinessErrorException exception) {
             throw exception;
         } catch (Exception exception) {
-            log.error("erro ao criar transacao | message={}", exception.getMessage());
-            throw new BussinessErrorException("erro ao criar transacao", exception);
+            log.error(LogMessages.BUSINESS_ERROR, "criação", Transaction.class.getSimpleName());
+            throw new BusinessErrorException(LogMessages.BUSINESS_ERROR_EXCEPTION_TRANSACTION, exception);
         }
     }
 
     private void validate(TransactionRequest request) {
         if (request.amount() == null || request.amount().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("valor da transacao deve ser maior que zero");
+            throw new IllegalArgumentException("valor da transação deve ser maior que zero");
         }
 
         if (request.type() == null) {
-            throw new IllegalArgumentException("tipo da transacao e obrigatorio");
+            throw new IllegalArgumentException("tipo da transação é obrigatório");
         }
 
         if (request.occurredAt() == null) {
-            throw new IllegalArgumentException("data da transacao e obrigatoria");
+            throw new IllegalArgumentException("data da transação é obrigatória");
         }
     }
-
 }

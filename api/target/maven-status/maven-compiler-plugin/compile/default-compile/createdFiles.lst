@@ -5,7 +5,6 @@ com\techfinance\pessoal\api\user\domain\model\User$UserBuilder.class
 com\techfinance\pessoal\api\account\adapter\in\dto\response\CategoryResponse.class
 com\techfinance\pessoal\api\account\domain\port\in\TransactionCommand.class
 com\techfinance\pessoal\api\ApiApplication.class
-com\techfinance\pessoal\api\infra\security\exception\NotFoundErrorException.class
 com\techfinance\pessoal\api\infra\shared\validation\message\ValidationMessages.class
 com\techfinance\pessoal\api\user\application\mapper\UserMapper.class
 com\techfinance\pessoal\api\account\application\service\CategoryService.class
@@ -23,7 +22,6 @@ com\techfinance\pessoal\api\auth\adapter\in\controller\AuthRestController.class
 com\techfinance\pessoal\api\account\domain\port\out\TransactionRepository.class
 com\techfinance\pessoal\api\account\adapter\in\controller\AccountRestController.class
 com\techfinance\pessoal\api\account\domain\port\out\result\CategoryResult.class
-com\techfinance\pessoal\api\user\domain\port\in\UserQuery.class
 com\techfinance\pessoal\api\account\adapter\out\persistence\AccountPersistenceRepository.class
 com\techfinance\pessoal\api\account\application\service\AccountService.class
 com\techfinance\pessoal\api\account\adapter\in\dto\request\TransactionRequest.class
@@ -33,7 +31,6 @@ com\techfinance\pessoal\api\infra\shared\log\LogMessages.class
 com\techfinance\pessoal\api\account\adapter\in\dto\response\TransactionResponse.class
 com\techfinance\pessoal\api\account\application\service\TransactionService.class
 com\techfinance\pessoal\api\auth\domain\port\in\AuthCommand.class
-com\techfinance\pessoal\api\user\domain\port\in\UserCommand.class
 com\techfinance\pessoal\api\account\adapter\in\controller\CategoryRestController.class
 com\techfinance\pessoal\api\account\domain\port\out\result\TransactionResult$TransactionResultBuilder.class
 com\techfinance\pessoal\api\auth\adapter\in\dto\response\AuthResponse.class
@@ -45,7 +42,6 @@ com\techfinance\pessoal\api\infra\shared\validation\annotations\RequiredField.cl
 com\techfinance\pessoal\api\account\domain\port\in\AccountCommand.class
 com\techfinance\pessoal\api\user\adapter\in\controller\UserRestController.class
 com\techfinance\pessoal\api\account\adapter\out\persistence\CategoryPersistenceRepository.class
-com\techfinance\pessoal\api\infra\exception\BussinessErrorException.class
 com\techfinance\pessoal\api\account\domain\model\Account.class
 com\techfinance\pessoal\api\account\adapter\in\controller\TransactionRestController.class
 com\techfinance\pessoal\api\account\application\mapper\AccountMapper.class
@@ -73,5 +69,4 @@ com\techfinance\pessoal\api\infra\spring\persistence\UserPersistenceSpring.class
 com\techfinance\pessoal\api\infra\security\jwt\JwtService.class
 com\techfinance\pessoal\api\infra\spring\persistence\CategoryPersistenceSpring.class
 com\techfinance\pessoal\api\auth\application\service\AuthService.class
-com\techfinance\pessoal\api\user\adapter\out\persistence\UserPersistenceRepostirory.class
 com\techfinance\pessoal\api\user\application\service\UserService.class

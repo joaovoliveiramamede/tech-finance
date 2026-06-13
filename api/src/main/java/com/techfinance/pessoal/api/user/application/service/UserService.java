@@ -1,15 +1,11 @@
 package com.techfinance.pessoal.api.user.application.service;
 
-import java.util.Optional;
-
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.techfinance.pessoal.api.infra.exception.BussinessErrorException;
-import com.techfinance.pessoal.api.infra.security.exception.NotFoundErrorException;
+import com.techfinance.pessoal.api.infra.exception.BusinessErrorException;
+import com.techfinance.pessoal.api.infra.exception.NotFoundErrorException;
+import com.techfinance.pessoal.api.infra.shared.log.LogMessages;
 import com.techfinance.pessoal.api.user.adapter.in.dto.request.UserRequest;
 import com.techfinance.pessoal.api.user.application.mapper.UserMapper;
 import com.techfinance.pessoal.api.user.domain.model.User;
@@ -23,62 +19,49 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class UserService implements 
-    UserUseCase,
-    UserDetailsService {
+public class UserService implements UserUseCase {
 
     private final UserRepository repository;
     private final UserMapper mapper;
     private final PasswordEncoder encoder;
 
     @Override
-    public UserResult create(UserRequest request) throws BussinessErrorException {
+    public UserResult create(UserRequest request) throws BusinessErrorException {
         try {
-            log.info("iniciando criação do usuário | name={}", request.name());
-            User entity = mapper.toEntity(request);
+            log.debug(LogMessages.START, "criação", "usuário");
+            log.info("criando usuário | username={}", request.username());
 
-            log.info("criptografando senha de usuário");
-            entity.setPassword(
-                encoder.encode(request.password())
-            );
+            User entity = mapper.toEntity(request);
+            entity.setPassword(encoder.encode(request.password()));
 
             User saved = repository.save(entity);
-            log.info("usuário salvo com sucesso");
+            log.info("usuário criado com sucesso | userId={}", saved.getId());
+            log.debug(LogMessages.FINISH, "criação", "usuário");
 
             return mapper.toResult(saved);
         } catch (Exception exception) {
-            throw new BussinessErrorException("erro ao salvar usuário", exception);
+            log.error(LogMessages.BUSINESS_ERROR, "criação", User.class.getSimpleName());
+            throw new BusinessErrorException(LogMessages.BUSINESS_ERROR_EXCEPTION_USER, exception);
         }
     }
 
     @Override
-    public UserResult byUsername(String username) throws NotFoundErrorException, BussinessErrorException {
+    public UserResult byUsername(String username) throws NotFoundErrorException, BusinessErrorException {
         try {
-            log.info("iniciando busca do usuário pelo username | username={}", username);
-            User found = Optional.ofNullable(repository.findByUsername(username))
-                .orElseThrow(() -> new NotFoundErrorException("usuário não encontrado com esse username | username=" + username));
-            log.info("usuário encontrado");
+            log.debug(LogMessages.START, "busca", "usuário");
+            log.info("buscando usuário | username={}", username);
+
+            User found = repository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundErrorException(
+                    "usuário não encontrado com esse username | username=" + username));
+
+            log.debug(LogMessages.FINISH, "busca", "usuário");
             return mapper.toResult(found);
         } catch (NotFoundErrorException exception) {
             throw exception;
         } catch (Exception exception) {
-            throw new BussinessErrorException("erro ao buscar usuário", exception);
+            log.error(LogMessages.BUSINESS_ERROR, "busca", User.class.getSimpleName());
+            throw new BusinessErrorException(LogMessages.BUSINESS_ERROR_EXCEPTION_USER, exception);
         }
     }
-    
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("iniciando o carregamento do usuário pelo username para login | username={}", username);
-
-        User user = Optional.ofNullable(repository.findByUsername(username))
-            .orElseThrow(() -> new UsernameNotFoundException("usuário não encontrado com esse username | username=" + username));
-
-            return org.springframework.security.core.userdetails.User
-                .builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .roles(user.getRole().name())
-                .build();
-    }
-
 }

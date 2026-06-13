@@ -1,11 +1,11 @@
 package com.techfinance.pessoal.api.account.domain.enums;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Arrays;
 
-import com.techfinance.pessoal.api.infra.security.exception.NotFoundErrorException;
+import com.techfinance.pessoal.api.infra.exception.NotFoundErrorException;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
@@ -18,10 +18,9 @@ public enum AccountType {
 
     public static AccountType fromCode(String code) {
         return Arrays.stream(values())
-                .filter(type -> type.code.equalsIgnoreCase(code))
-                .findFirst()
-                .orElseThrow(() -> new NotFoundErrorException(
-                        "erro ao encontrar o tipo de conta"));
+            .filter(type -> type.code.equalsIgnoreCase(code))
+            .findFirst()
+            .orElseThrow(() -> new NotFoundErrorException(
+                "erro ao encontrar o tipo de conta"));
     }
-
 }

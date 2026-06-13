@@ -4,7 +4,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public abstract class MapperConverter<REQ, RES, RESULT, ENTITY> {
-    
+
     public final ENTITY toEntity(REQ request) {
         log.debug("convertendo {} para entidade", request.getClass().getSimpleName());
         return doToEntity(request);
@@ -21,6 +21,6 @@ public abstract class MapperConverter<REQ, RES, RESULT, ENTITY> {
     }
 
     protected abstract ENTITY doToEntity(REQ request);
-    protected abstract RES doToResponse(RESULT reult);
+    protected abstract RES doToResponse(RESULT result);
     protected abstract RESULT doToResult(ENTITY entity);
 }
