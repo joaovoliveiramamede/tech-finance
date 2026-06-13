@@ -1,20 +1,25 @@
 package com.techfinance.pessoal.api.auth.adapter.in.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techfinance.pessoal.api.infra.shared.validation.annotations.RequiredField;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record RegisterRequest(
 
-    @RequiredField(property = "name")
+    @JsonProperty(value = "nome")
+    @RequiredField(property = "nome")
     String name,
 
-    @RequiredField(property = "username")
+    @JsonProperty(value = "usuario")
+    @RequiredField(property = "usuario")
     String username,
 
-    @RequiredField(property = "password")
+    @JsonProperty(value = "senha")
+    @RequiredField(property = "senha")
     String password,
 
-    @RequiredField(property = "role")
+    @JsonProperty(value = "papel")
+    @RequiredField(property = "papel")
     String role
 ) {}
