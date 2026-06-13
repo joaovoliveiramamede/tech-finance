@@ -62,7 +62,7 @@ public class RegisterController {
             () -> authService.register(
                 new RegisterRequest(name, username, password, "USER")
             ),
-            AppNavigator::navigateToHome,
+            AppNavigator::navigateToCreateAccount,
             error -> showError(resolveMessage(error))
         );
     }

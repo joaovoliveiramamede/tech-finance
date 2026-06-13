@@ -11,28 +11,30 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.techfinance.pessoal.desktop.controller.AccountsController"
-      spacing="20" styleClass="page">
+      spacing="20"
+    styleClass="accounts-page">
     <padding>
         <Insets top="28" right="32" bottom="32" left="32"/>
     </padding>
 
     <HBox alignment="CENTER_LEFT">
         <VBox spacing="4">
-            <Label text="Contas" styleClass="page-title"/>
-            <Label text="Carteiras, bancos e saldos" styleClass="page-subtitle"/>
+            <Label text="Contas" styleClass="accounts-title"/>
+            <Label text="Carteiras, bancos e saldos" styleClass="accounts-subtitle"/>
         </VBox>
         <HBox HBox.hgrow="ALWAYS"/>
-        <Button fx:id="createButton" text="Nova conta" styleClass="primary-button" onAction="#handleCreate"/>
+        <Button fx:id="createButton" text="Nova conta" styleClass="accounts-create-button" onAction="#handleCreate"/>
     </HBox>
 
-    <Label fx:id="errorLabel" visible="false" managed="false" styleClass="error-label"/>
+    <Label fx:id="errorLabel" visible="false" managed="false" styleClass="accounts-error"/>
 
-    <TableView fx:id="accountsTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+    <TableView fx:id="accountsTable" VBox.vgrow="ALWAYS" styleClass="accounts-table">
         <columns>
             <TableColumn fx:id="nameColumn" text="Nome" prefWidth="260"/>
             <TableColumn fx:id="typeColumn" text="Tipo" prefWidth="180"/>
             <TableColumn fx:id="balanceColumn" text="Saldo" prefWidth="180"/>
             <TableColumn fx:id="createdAtColumn" text="Criada em" prefWidth="180"/>
+            <TableColumn fx:id="updatedAtColumn" text="Atualizada em" prefWidth="180"/>
         </columns>
     </TableView>
 </VBox>

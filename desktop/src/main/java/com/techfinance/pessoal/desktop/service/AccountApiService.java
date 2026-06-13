@@ -1,5 +1,6 @@
 package com.techfinance.pessoal.desktop.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -29,7 +30,11 @@ public class AccountApiService {
         return apiClient.post("/account/create", request, AccountResponse.class);
     }
 
-    public AccountRequest buildRequest(String name, java.math.BigDecimal balance) {
+    public AccountResponse createAccount(String name, BigDecimal balance) {
+        return create(buildRequest(name, balance));
+    }
+
+    public AccountRequest buildRequest(String name, BigDecimal balance) {
         return new AccountRequest(
             name,
             balance,

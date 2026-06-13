@@ -40,6 +40,9 @@ public class AccountsController {
     private TableColumn<AccountResponse, String> createdAtColumn;
 
     @FXML
+    private TableColumn<AccountResponse, String> updatedAtColumn;
+
+    @FXML
     private Button createButton;
 
     @FXML
@@ -74,6 +77,12 @@ public class AccountsController {
             )
         );
 
+        updatedAtColumn.setCellValueFactory(data ->
+            new javafx.beans.property.SimpleStringProperty(
+                Formatters.dateTime(data.getValue().updatedAt())
+            )
+        );
+
         loadAccounts();
     }
 
@@ -103,10 +112,9 @@ public class AccountsController {
 
             try {
                 BigDecimal balance = new BigDecimal(balanceField.getText().replace(",", "."));
-                var request = accountApiService.buildRequest(nameField.getText().trim(), balance);
 
                 FxTasks.run(
-                    () -> accountApiService.create(request),
+                    () -> accountApiService.createAccount(nameField.getText().trim(), balance),
                     created -> loadAccounts(),
                     error -> showError(resolveMessage(error))
                 );

@@ -1,0 +1,140 @@
+/* ==========================================
+   ACCOUNTS PAGE
+========================================== */
+
+.accounts-page {
+    -fx-background-color: #f5f7fb;
+    -fx-spacing: 20;
+}
+
+.accounts-title {
+    -fx-text-fill: #172033;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.accounts-subtitle {
+    -fx-text-fill: #697386;
+    -fx-font-size: 14px;
+}
+
+.accounts-create-button {
+    -fx-background-color: #2f6fed;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 18;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.accounts-create-button:hover {
+    -fx-background-color: #235fcf;
+}
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.accounts-error {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #b91c1c;
+    -fx-padding: 10 14;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #fecaca;
+    -fx-font-weight: bold;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.accounts-table {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 12;
+}
+
+.accounts-table .column-header-background {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.accounts-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 46;
+}
+
+.accounts-table .column-header .label {
+    -fx-text-fill: #475569;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.accounts-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-cell-size: 50;
+    -fx-border-color: transparent transparent #eef2f7 transparent;
+}
+
+.accounts-table .table-row-cell:hover {
+    -fx-background-color: #f8fafc;
+}
+
+.accounts-table .table-row-cell:selected {
+    -fx-background-color: #e8f0ff;
+}
+
+.accounts-table .table-cell {
+    -fx-text-fill: #172033;
+    -fx-font-size: 13px;
+    -fx-padding: 0 12;
+    -fx-border-color: transparent;
+}
+
+.accounts-table .placeholder .label {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+}
+
+/* ==========================================
+   DIALOG
+========================================== */
+
+.accounts-dialog {
+    -fx-background-color: white;
+}
+
+.accounts-dialog .header-panel {
+    -fx-background-color: white;
+}
+
+.accounts-dialog .header-panel .label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #172033;
+}
+
+.accounts-dialog .text-field {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #cbd5e1;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 12;
+}
+
+.accounts-dialog .text-field:focused {
+    -fx-border-color: #2f6fed;
+    -fx-background-color: white;
+}
+
+.accounts-dialog .button:default {
+    -fx-background-color: #2f6fed;
+    -fx-text-fill: white;
+}
+
+.accounts-dialog .button {
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
+}

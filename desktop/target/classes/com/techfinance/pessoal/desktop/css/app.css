@@ -3,10 +3,15 @@
     -fx-font-family: "Segoe UI";
 }
 
+.main-layout {
+    -fx-background-color: #f5f7fb;
+}
+
 .sidebar {
     -fx-background-color: #172033;
-    -fx-pref-width: 248;
     -fx-min-width: 248;
+    -fx-pref-width: 248;
+    -fx-max-width: 248;
 }
 
 .brand-block {
@@ -16,7 +21,7 @@
 .brand-title {
     -fx-text-fill: #ffffff;
     -fx-font-size: 22px;
-    -fx-font-weight: 700;
+    -fx-font-weight: bold;
 }
 
 .brand-subtitle,
@@ -35,7 +40,7 @@
     -fx-font-size: 14px;
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 12 14;
-    -fx-background-radius: 6;
+    -fx-background-radius: 8;
     -fx-cursor: hand;
 }
 
@@ -51,13 +56,13 @@
 
 .user-block {
     -fx-background-color: #202c43;
-    -fx-background-radius: 8;
+    -fx-background-radius: 10;
     -fx-padding: 12;
 }
 
 .user-name {
     -fx-text-fill: #ffffff;
-    -fx-font-weight: 700;
+    -fx-font-weight: bold;
 }
 
 .logout-button {
@@ -80,21 +85,38 @@
 .topbar-title {
     -fx-text-fill: #172033;
     -fx-font-size: 18px;
-    -fx-font-weight: 700;
+    -fx-font-weight: bold;
+}
+
+.content-wrapper {
+    -fx-background-color: #f5f7fb;
+}
+
+.content-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}
+
+.content-scroll > .viewport {
+    -fx-background-color: #f5f7fb;
 }
 
 .content-area {
     -fx-background-color: #f5f7fb;
+    -fx-padding: 24;
 }
 
 .page {
     -fx-background-color: #f5f7fb;
+    -fx-spacing: 20;
 }
 
 .page-title {
     -fx-text-fill: #172033;
     -fx-font-size: 28px;
-    -fx-font-weight: 700;
+    -fx-font-weight: bold;
 }
 
 .page-subtitle {
@@ -105,9 +127,9 @@
 .primary-button {
     -fx-background-color: #2f6fed;
     -fx-text-fill: #ffffff;
-    -fx-font-weight: 700;
+    -fx-font-weight: bold;
     -fx-padding: 10 16;
-    -fx-background-radius: 6;
+    -fx-background-radius: 8;
     -fx-cursor: hand;
 }
 
@@ -118,14 +140,16 @@
 .metric-card,
 .panel {
     -fx-background-color: #ffffff;
-    -fx-background-radius: 8;
+    -fx-background-radius: 10;
     -fx-border-color: #e4e8ef;
-    -fx-border-radius: 8;
+    -fx-border-radius: 10;
     -fx-padding: 20;
 }
 
 .metric-card {
+    -fx-min-width: 220;
     -fx-pref-width: 260;
+    -fx-max-width: 360;
     -fx-min-height: 112;
 }
 
@@ -137,7 +161,7 @@
 .metric-value {
     -fx-text-fill: #172033;
     -fx-font-size: 26px;
-    -fx-font-weight: 700;
+    -fx-font-weight: bold;
 }
 
 .income {
@@ -151,7 +175,7 @@
 .panel-title {
     -fx-text-fill: #172033;
     -fx-font-size: 16px;
-    -fx-font-weight: 700;
+    -fx-font-weight: bold;
 }
 
 .empty-state {
@@ -162,14 +186,14 @@
 .filter-bar {
     -fx-background-color: #ffffff;
     -fx-border-color: #e4e8ef;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-padding: 14;
 }
 
 .data-table {
     -fx-background-color: #ffffff;
-    -fx-background-radius: 8;
+    -fx-background-radius: 10;
     -fx-border-color: #e4e8ef;
-    -fx-border-radius: 8;
+    -fx-border-radius: 10;
 }

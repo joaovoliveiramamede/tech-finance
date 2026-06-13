@@ -4,53 +4,53 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.techfinance.pessoal.desktop.controller.RegisterController"
-            styleClass="register-root">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.techfinance.pessoal.desktop.controller.RegisterController"
+           styleClass="auth-root">
 
-    <center>
-        <VBox alignment="CENTER">
+    <VBox alignment="CENTER">
 
-            <VBox styleClass="register-card" spacing="16">
+        <VBox styleClass="auth-card" spacing="16">
 
-                <padding>
-                    <Insets top="32" right="32" bottom="32" left="32"/>
-                </padding>
+            <padding>
+                <Insets top="32" right="32" bottom="32" left="32"/>
+            </padding>
 
-                <Label text="Criar conta"
-                       styleClass="register-title"/>
+            <Label text="Criar conta"
+                   styleClass="auth-title"/>
 
-                <Label text="Comece a organizar suas finanças"
-                       styleClass="register-subtitle"/>
+            <Label text="Comece a organizar suas finanças"
+                   styleClass="auth-subtitle"/>
 
-                <TextField fx:id="nameField"
-                           promptText="Nome"
-                           styleClass="register-field"/>
+            <TextField fx:id="nameField"
+                       promptText="Nome"
+                       styleClass="auth-field"/>
 
-                <TextField fx:id="usernameField"
-                           promptText="Username"
-                           styleClass="register-field"/>
+            <TextField fx:id="usernameField"
+                       promptText="Usuário"
+                       styleClass="auth-field"/>
 
-                <PasswordField fx:id="passwordField"
-                               promptText="Senha"
-                               styleClass="register-field"/>
+            <PasswordField fx:id="passwordField"
+                           promptText="Senha"
+                           styleClass="auth-field"/>
 
-                <Label fx:id="errorLabel"
-                       visible="false"
-                       managed="false"
-                       styleClass="error-label"/>
+            <Label fx:id="errorLabel"
+                   visible="false"
+                   managed="false"
+                   styleClass="error-label"/>
 
-                <Button text="Cadastrar"
-                        onAction="#handleRegister"
-                        styleClass="register-button"/>
+            <Button text="Cadastrar"
+                    maxWidth="Infinity"
+                    onAction="#handleRegister"
+                    styleClass="auth-button"/>
 
-                <Button text="Já tenho conta"
-                        onAction="#goToLogin"
-                        styleClass="register-link"/>
-
-            </VBox>
+            <Button text="Já tenho conta"
+                    maxWidth="Infinity"
+                    onAction="#goToLogin"
+                    styleClass="auth-link"/>
 
         </VBox>
-    </center>
 
-</BorderPane>
+    </VBox>
+
+</StackPane>
