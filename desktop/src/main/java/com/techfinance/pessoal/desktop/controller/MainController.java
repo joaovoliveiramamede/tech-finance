@@ -44,30 +44,40 @@ public class MainController {
     @FXML
     private void initialize() {
         navigator = new SceneNavigator(contentArea);
-        userNameLabel.setText(authService.getName() != null
-            ? authService.getName()
-            : authService.getUsername());
+
+        userNameLabel.setText(
+                authService.getName() != null
+                        ? authService.getName()
+                        : authService.getUsername()
+        );
+
         showHome();
     }
 
     @FXML
-    private void showHome() {
+    public void showHome() {
         navigate("home.fxml", homeButton);
     }
 
     @FXML
-    private void showAccounts() {
+    public void showAccounts() {
         navigate("accounts.fxml", accountsButton);
     }
 
     @FXML
-    private void showTransactions() {
+    public void showTransactions() {
         navigate("transactions.fxml", transactionsButton);
     }
 
     @FXML
-    private void showCategories() {
+    public void showCategories() {
         navigate("categories.fxml", categoriesButton);
+    }
+
+    public void refreshCurrentPage() {
+        if (navigator != null) {
+            navigator.refreshCurrent();
+        }
     }
 
     @FXML
@@ -93,6 +103,8 @@ public class MainController {
     }
 
     private void clearActive(Button button) {
-        button.getStyleClass().remove(ACTIVE_CLASS);
+        if (button != null) {
+            button.getStyleClass().remove(ACTIVE_CLASS);
+        }
     }
 }

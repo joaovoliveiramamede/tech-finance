@@ -32,8 +32,10 @@ com\techfinance\pessoal\desktop\dto\response\TransactionResponse.class
 com\techfinance\pessoal\desktop\util\FxTasks.class
 com\techfinance\pessoal\desktop\service\UserApiService.class
 com\techfinance\pessoal\desktop\controller\TransactionsController.class
+com\techfinance\pessoal\desktop\controller\CreateAccountController.class
 com\techfinance\pessoal\desktop\service\AccountApiService.class
 com\techfinance\pessoal\desktop\dto\request\RegisterRequest.class
+com\techfinance\pessoal\desktop\navigation\Refreshable.class
 com\techfinance\pessoal\desktop\dto\enums\TransactionType.class
 com\techfinance\pessoal\desktop\service\AuthService.class
 com\techfinance\pessoal\desktop\dto\response\UserResponse.class

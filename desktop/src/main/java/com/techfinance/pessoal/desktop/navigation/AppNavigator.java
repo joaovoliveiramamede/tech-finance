@@ -1,7 +1,9 @@
 package com.techfinance.pessoal.desktop.navigation;
 
 import com.techfinance.pessoal.desktop.DesktopApplication;
+import com.techfinance.pessoal.desktop.controller.MainController;
 import com.techfinance.pessoal.desktop.service.AuthService;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,9 +15,9 @@ import java.net.URL;
 public final class AppNavigator {
 
     private static Stage primaryStage;
+    private static Object currentController;
 
-    private AppNavigator() {
-    }
+    private AppNavigator() {}
 
     public static void init(Stage stage) {
         primaryStage = stage;
@@ -59,6 +61,18 @@ public final class AppNavigator {
         load("main.fxml", "app.css");
     }
 
+    public static void refreshHome() {
+        if (currentController instanceof MainController mainController) {
+            mainController.showHome();
+        }
+    }
+
+    public static void refreshCurrentPage() {
+        if (currentController instanceof MainController mainController) {
+            mainController.refreshCurrentPage();
+        }
+    }
+
     private static boolean isAuthenticated() {
         AuthService authService = DesktopApplication
                 .getInjector()
@@ -68,69 +82,49 @@ public final class AppNavigator {
     }
 
     private static void load(String fxml, String css) {
-    try {
-
-        URL fxmlUrl = AppNavigator.class.getResource(
-                "/com/techfinance/pessoal/desktop/fxml/" + fxml
-        );
-
-        if (fxmlUrl == null) {
-            throw new IllegalStateException(
-                    "FXML não encontrado: " + fxml
-            );
-        }
-
-        FXMLLoader loader = new FXMLLoader(fxmlUrl);
-
-        loader.setControllerFactory(
-                DesktopApplication.getInjector()::getInstance
-        );
-
-        Parent root = loader.load();
-
-        Scene scene = primaryStage.getScene();
-
-        if (scene == null) {
-
-            var bounds = Screen.getPrimary().getVisualBounds();
-
-            scene = new Scene(
-                    root,
-                    bounds.getWidth(),
-                    bounds.getHeight()
+        try {
+            URL fxmlUrl = AppNavigator.class.getResource(
+                    "/com/techfinance/pessoal/desktop/fxml/" + fxml
             );
 
-            primaryStage.setScene(scene);
+            if (fxmlUrl == null) {
+                throw new IllegalStateException("FXML não encontrado: " + fxml);
+            }
 
-        } else {
-
-            scene.setRoot(root);
-
-        }
-
-        scene.getStylesheets().clear();
-
-        URL cssUrl = AppNavigator.class.getResource(
-                "/com/techfinance/pessoal/desktop/css/" + css
-        );
-
-        if (cssUrl != null) {
-            scene.getStylesheets().add(
-                    cssUrl.toExternalForm()
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            loader.setControllerFactory(
+                    DesktopApplication.getInjector()::getInstance
             );
+
+            Parent root = loader.load();
+            currentController = loader.getController();
+
+            Scene scene = primaryStage.getScene();
+
+            if (scene == null) {
+                var bounds = Screen.getPrimary().getVisualBounds();
+                scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
+                primaryStage.setScene(scene);
+            } else {
+                scene.setRoot(root);
+            }
+
+            scene.getStylesheets().clear();
+
+            URL cssUrl = AppNavigator.class.getResource(
+                    "/com/techfinance/pessoal/desktop/css/" + css
+            );
+
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+
+            primaryStage.setMaximized(true);
+            primaryStage.show();
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            throw new RuntimeException("Erro ao carregar tela: " + fxml, exception);
         }
-
-        primaryStage.setMaximized(true);
-        primaryStage.show();
-
-    } catch (Exception exception) {
-
-        exception.printStackTrace();
-
-        throw new RuntimeException(
-                "Erro ao carregar tela: " + fxml,
-                exception
-        );
     }
-}
 }

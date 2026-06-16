@@ -2,6 +2,7 @@ C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\config\DesktopModule.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\AccountsController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\CategoriesController.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\CreateAccountController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\HomeController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\LoginController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\MainController.java
@@ -25,6 +26,7 @@ C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\infrastructure\http\ApiException.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\infrastructure\session\SessionManager.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\AppNavigator.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\Refreshable.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\SceneNavigator.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\service\AccountApiService.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\service\AuthService.java

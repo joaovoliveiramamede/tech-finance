@@ -12,8 +12,10 @@ import com.techfinance.pessoal.api.user.domain.model.User;
 import com.techfinance.pessoal.api.user.domain.port.out.UserRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Component
+@Log4j2
 @RequiredArgsConstructor
 public class AuthenticatedUserContext {
 
@@ -21,16 +23,19 @@ public class AuthenticatedUserContext {
 
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
+        log.debug("Obtendo usuário autenticado | authentication={}", authentication);
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new UnauthorizedErrorException("usuário não autenticado");
         }
 
         String username = authentication.getName();
+        log.debug("Obtendo usuário autenticado | username={}", username);
 
         if (username == null || username.isBlank() || "anonymousUser".equals(username)) {
             throw new UnauthorizedErrorException("usuário não autenticado");
         }
+
+        log.debug("Obtendo usuário autenticado | buscando usuário no banco de dados | username={}", username);
 
         return userRepository.findByUsername(username)
             .orElseThrow(() -> new NotFoundErrorException(
@@ -38,6 +43,7 @@ public class AuthenticatedUserContext {
     }
 
     public UUID getCurrentUserId() {
+        log.debug("Obtendo ID do usuário autenticado");
         return getCurrentUser().getId();
     }
 }

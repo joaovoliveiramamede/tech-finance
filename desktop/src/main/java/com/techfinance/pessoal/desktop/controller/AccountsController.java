@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 import com.techfinance.pessoal.desktop.dto.response.AccountResponse;
+import com.techfinance.pessoal.desktop.navigation.AppNavigator;
 import com.techfinance.pessoal.desktop.service.AccountApiService;
 import com.techfinance.pessoal.desktop.util.Formatters;
 import com.techfinance.pessoal.desktop.util.FxTasks;
@@ -115,9 +116,12 @@ public class AccountsController {
 
                 FxTasks.run(
                     () -> accountApiService.createAccount(nameField.getText().trim(), balance),
-                    created -> loadAccounts(),
+                    created -> {
+                        loadAccounts();
+                        AppNavigator.refreshHome();
+                    },
                     error -> showError(resolveMessage(error))
-                );
+);
             } catch (NumberFormatException exception) {
                 showError("Saldo inválido.");
             }

@@ -11,6 +11,7 @@ import com.techfinance.pessoal.desktop.dto.enums.TransactionType;
 import com.techfinance.pessoal.desktop.dto.response.AccountResponse;
 import com.techfinance.pessoal.desktop.dto.response.CategoryResponse;
 import com.techfinance.pessoal.desktop.dto.response.TransactionResponse;
+import com.techfinance.pessoal.desktop.navigation.Refreshable;
 import com.techfinance.pessoal.desktop.service.AccountApiService;
 import com.techfinance.pessoal.desktop.service.CategoryApiService;
 import com.techfinance.pessoal.desktop.service.TransactionApiService;
@@ -20,7 +21,7 @@ import com.techfinance.pessoal.desktop.util.FxTasks;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HomeController {
+public class HomeController implements Refreshable {
 
     private final AccountApiService accountApiService;
     private final CategoryApiService categoryApiService;
@@ -54,6 +55,11 @@ public class HomeController {
 
     @FXML
     private void initialize() {
+        refresh();
+    }
+
+    @Override
+    public void refresh() {
         loadDashboard();
     }
 
@@ -76,20 +82,21 @@ public class HomeController {
     private void renderDashboard(DashboardData data) {
         BigDecimal totalBalance = data.accounts().stream()
             .map(AccountResponse::balance)
+            .filter(java.util.Objects::nonNull)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         var currentMonth = java.time.YearMonth.now(ZoneId.of("America/Sao_Paulo"));
 
         BigDecimal income = data.transactions().stream()
             .filter(transaction -> transaction.type() == TransactionType.INCOME)
-            .filter(transaction -> isCurrentMonth(transaction.occurredAt(), currentMonth))
             .map(TransactionResponse::amount)
+            .filter(java.util.Objects::nonNull)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal expense = data.transactions().stream()
             .filter(transaction -> transaction.type() == TransactionType.EXPENSE)
-            .filter(transaction -> isCurrentMonth(transaction.occurredAt(), currentMonth))
             .map(TransactionResponse::amount)
+            .filter(java.util.Objects::nonNull)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         totalBalanceLabel.setText(Formatters.currency(totalBalance));
@@ -97,7 +104,12 @@ public class HomeController {
         expenseLabel.setText(Formatters.currency(expense));
 
         String lastTransactions = data.transactions().stream()
-            .sorted(Comparator.comparing(TransactionResponse::occurredAt).reversed())
+            .sorted(
+                Comparator.comparing(
+                    TransactionResponse::occurredAt,
+                    Comparator.nullsLast(Comparator.naturalOrder())
+                ).reversed()
+            )
             .limit(5)
             .map(transaction -> Formatters.dateTime(transaction.occurredAt())
                 + " • "
@@ -116,18 +128,6 @@ public class HomeController {
             .orElse("Nenhuma categoria registrada");
 
         topCategoriesLabel.setText(categories);
-    }
-
-    private boolean isCurrentMonth(Instant instant, java.time.YearMonth month) {
-        if (instant == null) {
-            return false;
-        }
-
-        var transactionMonth = java.time.YearMonth.from(
-            instant.atZone(ZoneId.of("America/Sao_Paulo"))
-        );
-
-        return transactionMonth.equals(month);
     }
 
     private record DashboardData(
