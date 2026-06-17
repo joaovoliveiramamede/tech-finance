@@ -37,7 +37,6 @@ C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pess
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\auth\adapter\in\dto\response\AuthResponse.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\auth\application\mapper\AuthMapper.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\auth\application\service\AuthService.java
-C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\auth\domain\port\in\AuthCommand.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\auth\domain\port\in\AuthUseCase.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\auth\domain\port\out\result\AuthResult.java
 C:\Users\9001892\projects-my\tech-finance\api\src\main\java\com\techfinance\pessoal\api\infra\config\OpenApiConfig.java

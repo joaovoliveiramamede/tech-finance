@@ -29,7 +29,6 @@ com\techfinance\pessoal\api\account\domain\port\out\result\AccountResult$Account
 com\techfinance\pessoal\api\infra\shared\log\LogMessages.class
 com\techfinance\pessoal\api\account\adapter\in\dto\response\TransactionResponse.class
 com\techfinance\pessoal\api\account\application\service\TransactionService.class
-com\techfinance\pessoal\api\auth\domain\port\in\AuthCommand.class
 com\techfinance\pessoal\api\account\adapter\in\controller\CategoryRestController.class
 com\techfinance\pessoal\api\account\domain\port\out\result\TransactionResult$TransactionResultBuilder.class
 com\techfinance\pessoal\api\auth\adapter\in\dto\response\AuthResponse.class

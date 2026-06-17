@@ -38,7 +38,9 @@ public class UserService implements UserUseCase {
             log.info("usuário criado com sucesso | userId={}", saved.getId());
             log.debug(LogMessages.FINISH, "criação", "usuário");
 
-            return mapper.toResult(saved);
+            UserResult result = mapper.toResult(saved);
+            log.info(LogMessages.AFTER_FINISH, "criacao");
+            return result;
         } catch (Exception exception) {
             log.error(LogMessages.BUSINESS_ERROR, "criação", User.class.getSimpleName());
             throw new BusinessErrorException(LogMessages.BUSINESS_ERROR_EXCEPTION_USER, exception);
