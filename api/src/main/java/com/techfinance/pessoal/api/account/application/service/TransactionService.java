@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 
-
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -86,8 +85,6 @@ public class TransactionService implements TransactionUseCase {
             log.info("criando transação | accountId={} | userId={}", request.accountId(), userId);
 
             validate(request);
-
-
 
             Account account = accountRepository.findByIdAndUserId(request.accountId(), userId)
 

@@ -37,7 +37,7 @@ public class JavaFxNavigator implements Navigator {
 
     @Override
     public void toRegister() {
-        load("register.fxml", "auth.css", "register.css");
+        load("register.fxml", "register.css");
     }
 
     @Override
@@ -52,7 +52,7 @@ public class JavaFxNavigator implements Navigator {
             return;
         }
 
-        load("create-account.fxml", "auth.css", "register.css");
+        load("create-account.fxml", "register.css");
     }
 
     @Override

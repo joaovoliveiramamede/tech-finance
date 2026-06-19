@@ -30,6 +30,18 @@ public record TransactionResponse(
     @JsonProperty(value = "ocorreu_em")
     Instant occurredAt,
 
+    @JsonProperty(value = "id_conta")
+    UUID accountId,
+
+    @JsonProperty(value = "nome_conta")
+    String accountName,
+
+    @JsonProperty(value = "id_categoria")
+    UUID categoryId,
+
+    @JsonProperty(value = "nome_categoria")
+    String categoryName,
+
     @JsonProperty(value = "data_criacao")
     Instant createdAt,
 
@@ -43,6 +55,10 @@ public record TransactionResponse(
             result.getType(),
             result.getDescription(),
             result.getOccurredAt(),
+            result.getAccount() != null ? result.getAccount().getId() : null,
+            result.getAccount() != null ? result.getAccount().getName() : null,
+            result.getCategory() != null ? result.getCategory().getId() : null,
+            result.getCategory() != null ? result.getCategory().getName() : null,
             result.getCreatedAt(),
             result.getUpdatedAt()
         );

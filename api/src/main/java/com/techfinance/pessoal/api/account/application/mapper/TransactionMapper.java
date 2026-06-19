@@ -43,15 +43,7 @@ public class TransactionMapper
 
     @Override
     protected TransactionResponse doToResponse(TransactionResult result) {
-        return new TransactionResponse(
-            result.getId(),
-            result.getAmount(),
-            result.getType(),
-            result.getDescription(),
-            result.getOccurredAt(),
-            result.getCreatedAt(),
-            result.getUpdatedAt()
-        );
+        return TransactionResponse.from(result);
     }
 
     public Transaction toEntityWithAccountAndCategory(TransactionRequest request, Account account, Category category) {
