@@ -3,7 +3,7 @@ package com.techfinance.pessoal.desktop;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.techfinance.pessoal.desktop.config.DesktopModule;
-import com.techfinance.pessoal.desktop.navigation.AppNavigator;
+import com.techfinance.pessoal.desktop.navigation.Navigator;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,11 +16,11 @@ public class DesktopApplication extends Application {
     public void start(Stage stage) {
 
         injector = Guice.createInjector(
-            new DesktopModule()
+            new DesktopModule(stage)
         );
 
-        AppNavigator.init(stage);
-        AppNavigator.navigateToLogin();
+        Navigator navigator = injector.getInstance(Navigator.class);
+        navigator.toLogin();
     }
 
     public static Injector getInjector() {

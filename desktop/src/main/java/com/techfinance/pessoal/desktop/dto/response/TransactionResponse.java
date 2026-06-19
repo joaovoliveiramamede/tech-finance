@@ -26,6 +26,18 @@ public record TransactionResponse(
     @JsonProperty("ocorreu_em")
     Instant occurredAt,
 
+    @JsonProperty("id_conta")
+    UUID accountId,
+
+    @JsonProperty("nome_conta")
+    String accountName,
+
+    @JsonProperty("id_categoria")
+    UUID categoryId,
+
+    @JsonProperty("nome_categoria")
+    String categoryName,
+
     @JsonProperty("data_criacao")
     Instant createdAt,
 

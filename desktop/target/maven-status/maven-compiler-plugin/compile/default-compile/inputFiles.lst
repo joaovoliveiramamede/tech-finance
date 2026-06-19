@@ -9,6 +9,7 @@ C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\RegisterController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\controller\TransactionsController.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\DesktopApplication.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\domain\model\User.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\dto\enums\AccountType.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\dto\enums\TransactionType.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\dto\request\AccountRequest.java
@@ -25,7 +26,9 @@ C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\infrastructure\http\ApiClient.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\infrastructure\http\ApiException.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\infrastructure\session\SessionManager.java
-C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\AppNavigator.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\FxmlViewLoader.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\JavaFxNavigator.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\Navigator.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\Refreshable.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\navigation\SceneNavigator.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\service\AccountApiService.java
@@ -35,3 +38,4 @@ C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\service\UserApiService.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\util\Formatters.java
 C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\util\FxTasks.java
+C:\Users\9001892\projects-my\tech-finance\desktop\src\main\java\com\techfinance\pessoal\desktop\util\ValidationField.java

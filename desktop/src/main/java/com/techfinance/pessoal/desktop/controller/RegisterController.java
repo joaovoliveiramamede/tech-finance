@@ -2,9 +2,10 @@ package com.techfinance.pessoal.desktop.controller;
 
 import com.google.inject.Inject;
 import com.techfinance.pessoal.desktop.dto.request.RegisterRequest;
-import com.techfinance.pessoal.desktop.navigation.AppNavigator;
+import com.techfinance.pessoal.desktop.navigation.Navigator;
 import com.techfinance.pessoal.desktop.service.AuthService;
 import com.techfinance.pessoal.desktop.util.FxTasks;
+import com.techfinance.pessoal.desktop.util.ValidationField;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,10 +15,12 @@ import javafx.scene.control.TextField;
 public class RegisterController {
 
     private final AuthService authService;
+    private final Navigator navigator;
 
     @Inject
-    public RegisterController(AuthService authService) {
+    public RegisterController(AuthService authService, Navigator navigator) {
         this.authService = authService;
+        this.navigator = navigator;
     }
 
     @FXML
@@ -34,27 +37,13 @@ public class RegisterController {
 
     @FXML
     private void handleRegister() {
-        String name = nameField.getText();
-        String username = usernameField.getText();
+        String name = ValidationField.normalize(nameField.getText());
+        String username = ValidationField.normalize(usernameField.getText());
         String password = passwordField.getText();
 
-        if (isBlank(name)) {
-            showError("Informe seu nome.");
-            return;
-        }
-
-        if (name.length() < 3) {
-            showError("Nome inválido.");
-            return;
-        }
-
-        if (isBlank(username)) {
-            showError("Informe o usuário.");
-            return;
-        }
-
-        if (password.length() < 6) {
-            showError("Senha inválida. Mínimo 6 caracteres.");
+        var validationError = ValidationField.validateRegister(name, username, password);
+        if (validationError.isPresent()) {
+            showError(validationError.get());
             return;
         }
 
@@ -62,14 +51,14 @@ public class RegisterController {
             () -> authService.register(
                 new RegisterRequest(name, username, password, "USER")
             ),
-            AppNavigator::navigateToCreateAccount,
+            navigator::toCreateAccount,
             error -> showError(resolveMessage(error))
         );
     }
 
     @FXML
     private void goToLogin() {
-        AppNavigator.navigateToLogin();
+        navigator.toLogin();
     }
 
     private void showError(String message) {
@@ -86,9 +75,5 @@ public class RegisterController {
         return error.getMessage() != null
             ? error.getMessage()
             : "Erro ao registrar usuário.";
-    }
-
-    private boolean isBlank(String value) {
-        return value == null || value.trim().isEmpty();
     }
 }

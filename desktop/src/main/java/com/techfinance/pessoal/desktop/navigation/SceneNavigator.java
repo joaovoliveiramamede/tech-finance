@@ -1,45 +1,22 @@
 package com.techfinance.pessoal.desktop.navigation;
 
-import com.techfinance.pessoal.desktop.DesktopApplication;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
-
-import java.net.URL;
 
 public class SceneNavigator {
 
     private final StackPane contentArea;
+    private final FxmlViewLoader viewLoader;
     private Object currentController;
 
-    public SceneNavigator(StackPane contentArea) {
+    public SceneNavigator(StackPane contentArea, FxmlViewLoader viewLoader) {
         this.contentArea = contentArea;
+        this.viewLoader = viewLoader;
     }
 
     public void navigateTo(String fxml) {
-        try {
-            URL fxmlUrl = getClass().getResource(
-                    "/com/techfinance/pessoal/desktop/fxml/" + fxml
-            );
-
-            if (fxmlUrl == null) {
-                throw new IllegalStateException("FXML interno não encontrado: " + fxml);
-            }
-
-            FXMLLoader loader = new FXMLLoader(fxmlUrl);
-            loader.setControllerFactory(
-                    DesktopApplication.getInjector()::getInstance
-            );
-
-            Parent root = loader.load();
-            currentController = loader.getController();
-
-            contentArea.getChildren().setAll(root);
-
-        } catch (Exception exception) {
-            throw new RuntimeException("Erro ao carregar tela interna: " + fxml, exception);
-        }
+        FxmlViewLoader.LoadedView view = viewLoader.load(fxml);
+        currentController = view.controller();
+        contentArea.getChildren().setAll(view.root());
     }
 
     public void refreshCurrent() {

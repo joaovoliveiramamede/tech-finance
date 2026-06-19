@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 import com.techfinance.pessoal.desktop.dto.response.AccountResponse;
-import com.techfinance.pessoal.desktop.navigation.AppNavigator;
+import com.techfinance.pessoal.desktop.navigation.Navigator;
 import com.techfinance.pessoal.desktop.service.AccountApiService;
 import com.techfinance.pessoal.desktop.util.Formatters;
 import com.techfinance.pessoal.desktop.util.FxTasks;
@@ -24,6 +24,7 @@ import javafx.scene.layout.GridPane;
 public class AccountsController {
 
     private final AccountApiService accountApiService;
+    private final Navigator navigator;
 
     @FXML
     private TableView<AccountResponse> accountsTable;
@@ -50,8 +51,9 @@ public class AccountsController {
     private Label errorLabel;
 
     @Inject
-    public AccountsController(AccountApiService accountApiService) {
+    public AccountsController(AccountApiService accountApiService, Navigator navigator) {
         this.accountApiService = accountApiService;
+        this.navigator = navigator;
     }
 
     @FXML
@@ -118,7 +120,7 @@ public class AccountsController {
                     () -> accountApiService.createAccount(nameField.getText().trim(), balance),
                     created -> {
                         loadAccounts();
-                        AppNavigator.refreshHome();
+                        navigator.refreshHome();
                     },
                     error -> showError(resolveMessage(error))
 );

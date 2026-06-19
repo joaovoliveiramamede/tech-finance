@@ -1,7 +1,8 @@
 package com.techfinance.pessoal.desktop.controller;
 
 import com.google.inject.Inject;
-import com.techfinance.pessoal.desktop.navigation.AppNavigator;
+import com.techfinance.pessoal.desktop.navigation.FxmlViewLoader;
+import com.techfinance.pessoal.desktop.navigation.Navigator;
 import com.techfinance.pessoal.desktop.navigation.SceneNavigator;
 import com.techfinance.pessoal.desktop.service.AuthService;
 
@@ -15,6 +16,8 @@ public class MainController {
     private static final String ACTIVE_CLASS = "sidebar-button-active";
 
     private final AuthService authService;
+    private final Navigator appNavigator;
+    private final FxmlViewLoader viewLoader;
 
     @FXML
     private StackPane contentArea;
@@ -37,13 +40,19 @@ public class MainController {
     private SceneNavigator navigator;
 
     @Inject
-    public MainController(AuthService authService) {
+    public MainController(
+            AuthService authService,
+            Navigator appNavigator,
+            FxmlViewLoader viewLoader) {
+
         this.authService = authService;
+        this.appNavigator = appNavigator;
+        this.viewLoader = viewLoader;
     }
 
     @FXML
     private void initialize() {
-        navigator = new SceneNavigator(contentArea);
+        navigator = new SceneNavigator(contentArea, viewLoader);
 
         userNameLabel.setText(
                 authService.getName() != null
@@ -83,7 +92,7 @@ public class MainController {
     @FXML
     private void logout() {
         authService.logout();
-        AppNavigator.navigateToLogin();
+        appNavigator.toLogin();
     }
 
     private void navigate(String fxml, Button activeButton) {

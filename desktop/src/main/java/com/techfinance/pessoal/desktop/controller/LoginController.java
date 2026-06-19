@@ -2,7 +2,7 @@ package com.techfinance.pessoal.desktop.controller;
 
 import com.google.inject.Inject;
 import com.techfinance.pessoal.desktop.dto.request.LoginRequest;
-import com.techfinance.pessoal.desktop.navigation.AppNavigator;
+import com.techfinance.pessoal.desktop.navigation.Navigator;
 import com.techfinance.pessoal.desktop.service.AuthService;
 import com.techfinance.pessoal.desktop.util.FxTasks;
 
@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 public class LoginController {
 
     private final AuthService authService;
+    private final Navigator navigator;
 
     @FXML
     private TextField usernameField;
@@ -25,8 +26,9 @@ public class LoginController {
     private Label errorLabel;
 
     @Inject
-    public LoginController(AuthService authService) {
+    public LoginController(AuthService authService, Navigator navigator) {
         this.authService = authService;
+        this.navigator = navigator;
     }
 
     @FXML
@@ -46,14 +48,14 @@ public class LoginController {
 
         FxTasks.run(
             () -> authService.login(new LoginRequest(username, password)),
-            AppNavigator::navigateToHome,
+            navigator::toHome,
             error -> showError(resolveMessage(error))
         );
     }
 
     @FXML
     private void goToRegister() {
-        AppNavigator.navigateToRegister();
+        navigator.toRegister();
     }
 
     private void showError(String message) {

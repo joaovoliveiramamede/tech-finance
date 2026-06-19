@@ -3,7 +3,7 @@ package com.techfinance.pessoal.desktop.controller;
 import java.math.BigDecimal;
 
 import com.google.inject.Inject;
-import com.techfinance.pessoal.desktop.navigation.AppNavigator;
+import com.techfinance.pessoal.desktop.navigation.Navigator;
 import com.techfinance.pessoal.desktop.service.AccountApiService;
 import com.techfinance.pessoal.desktop.util.FxTasks;
 
@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 public class CreateAccountController {
 
     private final AccountApiService accountApiService;
+    private final Navigator navigator;
 
     @FXML
     private TextField nameField;
@@ -25,8 +26,9 @@ public class CreateAccountController {
     private Label errorLabel;
 
     @Inject
-    public CreateAccountController(AccountApiService accountApiService) {
+    public CreateAccountController(AccountApiService accountApiService, Navigator navigator) {
         this.accountApiService = accountApiService;
+        this.navigator = navigator;
     }
 
     @FXML
@@ -45,7 +47,7 @@ public class CreateAccountController {
 
             FxTasks.run(
                     () -> accountApiService.createAccount(name, balance),
-                    created -> AppNavigator.navigateToHome(),
+                    created -> navigator.toHome(),
                     error -> showError(resolveMessage(error))
             );
 
@@ -56,7 +58,7 @@ public class CreateAccountController {
 
     @FXML
     private void goToHome() {
-        AppNavigator.navigateToHome();
+        navigator.toHome();
     }
 
     private void showError(String message) {

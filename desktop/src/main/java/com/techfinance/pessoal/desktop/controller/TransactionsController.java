@@ -13,6 +13,8 @@ import com.techfinance.pessoal.desktop.dto.request.TransactionRequest;
 import com.techfinance.pessoal.desktop.dto.response.AccountResponse;
 import com.techfinance.pessoal.desktop.dto.response.CategoryResponse;
 import com.techfinance.pessoal.desktop.dto.response.TransactionResponse;
+import com.techfinance.pessoal.desktop.navigation.Navigator;
+import com.techfinance.pessoal.desktop.navigation.Refreshable;
 import com.techfinance.pessoal.desktop.service.AccountApiService;
 import com.techfinance.pessoal.desktop.service.CategoryApiService;
 import com.techfinance.pessoal.desktop.service.TransactionApiService;
@@ -32,11 +34,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
 
-public class TransactionsController {
+public class TransactionsController implements Refreshable {
 
     private final TransactionApiService transactionApiService;
     private final AccountApiService accountApiService;
     private final CategoryApiService categoryApiService;
+    private final Navigator navigator;
 
     private Map<UUID, String> accountNames = Map.of();
     private Map<UUID, String> categoryNames = Map.of();
@@ -72,11 +75,13 @@ public class TransactionsController {
     public TransactionsController(
             TransactionApiService transactionApiService,
             AccountApiService accountApiService,
-            CategoryApiService categoryApiService) {
+            CategoryApiService categoryApiService,
+            Navigator navigator) {
 
         this.transactionApiService = transactionApiService;
         this.accountApiService = accountApiService;
         this.categoryApiService = categoryApiService;
+        this.navigator = navigator;
     }
 
     @FXML
@@ -92,16 +97,20 @@ public class TransactionsController {
         );
 
         accountColumn.setCellValueFactory(data ->
-            new javafx.beans.property.SimpleStringProperty("-")
+            new javafx.beans.property.SimpleStringProperty(
+                resolveAccountName(data.getValue())
+            )
         );
 
         categoryColumn.setCellValueFactory(data ->
-            new javafx.beans.property.SimpleStringProperty("-")
+            new javafx.beans.property.SimpleStringProperty(
+                resolveCategoryName(data.getValue())
+            )
         );
 
         typeColumn.setCellValueFactory(data ->
             new javafx.beans.property.SimpleStringProperty(
-                data.getValue().type() != null ? data.getValue().type().name() : "-"
+                data.getValue().type() != null ? formatType(data.getValue().type()) : "-"
             )
         );
 
@@ -111,6 +120,11 @@ public class TransactionsController {
             )
         );
 
+        loadData();
+    }
+
+    @Override
+    public void refresh() {
         loadData();
     }
 
@@ -189,7 +203,10 @@ public class TransactionsController {
 
                 FxTasks.run(
                     () -> transactionApiService.create(request),
-                    created -> loadData(),
+                    created -> {
+                        loadData();
+                        navigator.refreshHome();
+                    },
                     error -> showError(resolveMessage(error))
                 );
             } catch (NumberFormatException exception) {
@@ -237,6 +254,37 @@ public class TransactionsController {
     private String resolveMessage(Throwable error) {
         Throwable cause = error.getCause() != null ? error.getCause() : error;
         return cause.getMessage() != null ? cause.getMessage() : "Erro ao processar transação.";
+    }
+
+    private String resolveAccountName(TransactionResponse transaction) {
+        if (transaction.accountName() != null && !transaction.accountName().isBlank()) {
+            return transaction.accountName();
+        }
+
+        if (transaction.accountId() != null) {
+            return accountNames.getOrDefault(transaction.accountId(), "-");
+        }
+
+        return "-";
+    }
+
+    private String resolveCategoryName(TransactionResponse transaction) {
+        if (transaction.categoryName() != null && !transaction.categoryName().isBlank()) {
+            return transaction.categoryName();
+        }
+
+        if (transaction.categoryId() != null) {
+            return categoryNames.getOrDefault(transaction.categoryId(), "-");
+        }
+
+        return "-";
+    }
+
+    private String formatType(TransactionType type) {
+        return switch (type) {
+            case INCOME -> "Receita";
+            case EXPENSE -> "Despesa";
+        };
     }
 
     private record FormData(

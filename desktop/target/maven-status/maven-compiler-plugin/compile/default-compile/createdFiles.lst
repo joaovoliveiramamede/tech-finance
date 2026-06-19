@@ -2,7 +2,6 @@ com\techfinance\pessoal\desktop\dto\response\AuthResponse.class
 com\techfinance\pessoal\desktop\controller\TransactionsController$1.class
 com\techfinance\pessoal\desktop\infrastructure\http\ApiException.class
 com\techfinance\pessoal\desktop\controller\LoginController.class
-com\techfinance\pessoal\desktop\navigation\AppNavigator.class
 com\techfinance\pessoal\desktop\infrastructure\session\SessionManager.class
 com\techfinance\pessoal\desktop\controller\CategoriesController.class
 com\techfinance\pessoal\desktop\controller\TransactionsController$FormData.class
@@ -11,6 +10,7 @@ com\techfinance\pessoal\desktop\util\FxTasks$1.class
 com\techfinance\pessoal\desktop\navigation\SceneNavigator.class
 com\techfinance\pessoal\desktop\dto\request\TransactionRequest.class
 com\techfinance\pessoal\desktop\controller\AccountsController.class
+com\techfinance\pessoal\desktop\domain\model\User$UserBuilder.class
 com\techfinance\pessoal\desktop\controller\TransactionsController$TransactionsPageData.class
 com\techfinance\pessoal\desktop\controller\MainController.class
 com\techfinance\pessoal\desktop\infrastructure\http\ApiClient.class
@@ -19,6 +19,9 @@ com\techfinance\pessoal\desktop\dto\response\AccountResponse.class
 com\techfinance\pessoal\desktop\service\TransactionApiService.class
 com\techfinance\pessoal\desktop\dto\request\CategoryRequest.class
 com\techfinance\pessoal\desktop\config\ApiConfig.class
+com\techfinance\pessoal\desktop\navigation\FxmlViewLoader.class
+com\techfinance\pessoal\desktop\navigation\Navigator.class
+com\techfinance\pessoal\desktop\controller\TransactionsController$3.class
 com\techfinance\pessoal\desktop\dto\request\LoginRequest.class
 com\techfinance\pessoal\desktop\util\Formatters.class
 com\techfinance\pessoal\desktop\controller\RegisterController.class
@@ -30,9 +33,13 @@ com\techfinance\pessoal\desktop\dto\response\ErrorResponse.class
 com\techfinance\pessoal\desktop\dto\enums\AccountType.class
 com\techfinance\pessoal\desktop\dto\response\TransactionResponse.class
 com\techfinance\pessoal\desktop\util\FxTasks.class
+com\techfinance\pessoal\desktop\domain\model\User.class
+com\techfinance\pessoal\desktop\util\ValidationField.class
+com\techfinance\pessoal\desktop\navigation\JavaFxNavigator.class
 com\techfinance\pessoal\desktop\service\UserApiService.class
 com\techfinance\pessoal\desktop\controller\TransactionsController.class
 com\techfinance\pessoal\desktop\controller\CreateAccountController.class
+com\techfinance\pessoal\desktop\navigation\FxmlViewLoader$LoadedView.class
 com\techfinance\pessoal\desktop\service\AccountApiService.class
 com\techfinance\pessoal\desktop\dto\request\RegisterRequest.class
 com\techfinance\pessoal\desktop\navigation\Refreshable.class
