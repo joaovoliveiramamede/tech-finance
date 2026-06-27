@@ -24,6 +24,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import org.springframework.web.cors.CorsConfigurationSource;
+
 
 
 import com.techfinance.pessoal.api.infra.security.filter.JwtAuthenticationFilter;
@@ -60,13 +62,17 @@ public class SecurityConfig {
 
     private final JsonAccessDeniedHandler accessDeniedHandler;
 
+    private final CorsConfigurationSource corsConfigurationSource;
+
 
 
     @Bean
 
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable())
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource))
+
+            .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth ->
 
