@@ -6,12 +6,15 @@ import lombok.Getter;
 import java.time.Instant;
 import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
+
 @Getter
 @MappedSuperclass
 public abstract class EntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @JdbcTypeCode(java.sql.Types.VARCHAR)
     UUID id;
 
     @Column(name = "data_criacao", nullable = false, updatable = false)
@@ -22,10 +25,6 @@ public abstract class EntityBase {
 
     @PrePersist
     protected void prePersist() {
-        if (id == null) {
-            id = UUID.randomUUID();
-        }
-
         Instant now = Instant.now();
 
         createdAt = now;
