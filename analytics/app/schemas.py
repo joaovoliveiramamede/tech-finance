@@ -106,3 +106,17 @@ class AccountFinancialAnalysisQuery(BaseModel):
     end: Optional[datetime] = None
     period: TimePeriod = TimePeriod.MONTH
     forecastPeriods: int = Field(default=3, ge=0, le=36)
+
+
+class ProfitChartPoint(BaseModel):
+    period: str
+    revenue: Decimal = Field(description="R(t) — receita no período")
+    cost: Decimal = Field(description="C(t) — custo/despesa no período")
+    profit: Decimal = Field(description="L(t) = R(t) - C(t) — lucro no período")
+
+
+class ProfitChartResponse(BaseModel):
+    formula: str = "L(t) = R(t) - C(t)"
+    period: TimePeriod
+    series: list[ProfitChartPoint] = Field(default_factory=list)
+    imageBase64: str = Field(description="Gráfico PNG codificado em base64")

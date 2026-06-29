@@ -82,6 +82,9 @@ class FinancialMathService:
             for category, total in category_totals.items()
         ]
 
+    def build_period_metrics(self, transactions, period: TimePeriod) -> list[PeriodMetric]:
+        return self._build_period_metrics(transactions, period)
+
     def _build_period_metrics(self, transactions, period: TimePeriod) -> list[PeriodMetric]:
         grouped: dict[str, dict[str, Decimal]] = defaultdict(
             lambda: {"income": Decimal("0"), "expense": Decimal("0")}
